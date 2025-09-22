@@ -1,5 +1,7 @@
 from datetime import datetime
 
+import boto3
+
 from lib.s3_reader.reader import S3Reader
 import json
 
@@ -8,11 +10,33 @@ class LogAnalyzer:
     DATE_TIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
 
     def __init__(self, bucket_name, file_directory, threshold, time_stamp = None):
-        self.s3_reader = S3Reader(bucket_name=bucket_name, file_directory=file_directory)
+        self.s3_reader = S3Reader(bucket_name=bucket_name, file_directory=LogAnalyzer.get_most_recent_json(bucket_name, file_directory))
         self.threshold = threshold
         self.trigger_alert = False
         self.time_stamp = time_stamp
         self.report_json = None
+
+
+    @staticmethod
+    def get_most_recent_json(bucket_name, prefix):
+        latest_file = None
+        latest_time = None
+
+        s3 = boto3.client('s3')
+        paginator = s3.get_paginator('list_objects_v2')
+        for page in paginator.paginate(Bucket=bucket_name, Prefix=prefix):
+            for obj in page["Contents"]:
+                key = obj["Key"]
+                filename = key.split("/")[-1]
+                timestamp_str = filename.replace(".jsonl", "")
+                if filename != "":
+                    timestamp = datetime.strptime(timestamp_str, "%Y-%m-%dT%H-%M")
+                    if latest_time is None or timestamp > latest_time:
+                        latest_time = timestamp
+                        latest_file = key
+
+        return latest_file
+
 
     def get_next_json_line(self):
         next_line = self.s3_reader.get_next_line()

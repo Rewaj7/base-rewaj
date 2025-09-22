@@ -43,3 +43,12 @@ resource "aws_iam_role_policy_attachment" "ecs_ssm" {
   role       = aws_iam_role.ecs_task.name
   policy_arn = data.aws_iam_policy.ssm_managed.arn
 }
+
+data "aws_iam_policy" "s3_read" {
+  arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+}
+
+resource "aws_iam_role_policy_attachment" "s3_read" {
+  role       = aws_iam_role.ecs_task.name
+  policy_arn = data.aws_iam_policy.s3_read.arn
+}

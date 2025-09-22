@@ -1,5 +1,5 @@
 locals {
-  ecr_name = ""
+  ecr_name = "rewaj_base_ecr"
 }
 
 data "aws_ecr_repository" "ecr" {

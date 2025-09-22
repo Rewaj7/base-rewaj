@@ -1,7 +1,7 @@
 module "service" {
   source = "./modules/service"
   //Common Variables
-  service_name = "rewaj-cb"
+  service_name = "rewaj-base"
   env = var.env
 
   //ECS Variables
@@ -25,7 +25,7 @@ module "service" {
 
   //Cloudwatch Variables
   log_group_prefixes = {
-    "rack": "rewaj-cb/rack/${var.env}"
+    "fastapi": "rewaj-base/fastapi/${var.env}"
   }
 
   //ALB Variables

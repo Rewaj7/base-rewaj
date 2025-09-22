@@ -28,5 +28,5 @@ resource "aws_security_group" "alb" {
 
 locals {
   standard_ingress_ports = [var.open_ports["HTTP"], var.open_ports["HTTPS"]]
-  standard_egress_ports = [var.open_ports["RACK"]]
+  standard_egress_ports = [var.open_ports["FASTAPI"]]
 }

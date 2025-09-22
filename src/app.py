@@ -13,6 +13,10 @@ def parse_iso8601(s):
         error_message = f"Not a valid ISO 8601 timestamp: '{s}'. Expected format YYYY-MM-DDTHH:MM:SSZ"
         return ValueError(error_message)
 
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
 @app.get("/analyze/")
 async def analyze(
     bucket: str = Query(..., description="Name of the S3 bucket"),

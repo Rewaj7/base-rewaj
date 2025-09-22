@@ -9,4 +9,4 @@ ENV PYTHONPATH=/app/src
 
 RUN pip install -r requirements.txt
 
-ENTRYPOINT ["python", "src/analyze.py"]
+CMD ["python", "src/analyze.py"]

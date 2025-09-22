@@ -7,7 +7,7 @@
             "essential": true,
             "volumesFrom": [],
             "mountPoints": [],
-            command = ["uvicorn", " app:app", "--reload"]
+            command = ["uvicorn", "app:app", "--reload"]
             "secrets": [
               for env in ssm_secrets: {
                 name = env.name

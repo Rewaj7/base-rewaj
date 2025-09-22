@@ -1,16 +1,15 @@
 import io
 import boto3
 
+s3 = boto3.client("s3")
+
 class S3Reader:
 
     def __init__(self, bucket_name:str, file_directory):
         self.bucket_name = bucket_name
         self.file_directory = file_directory
-        self.file_body = s3.get_object(Bucket=bucket, Key=key)["Body"]
+        self.file_body = s3.get_object(Bucket=self.bucket_name, Key=self.file_directory)["Body"]
         self.stream = io.TextIOWrapper(self.file_body, encoding="utf-8")
-
-    def get_all_lines(self):
-        return self.file_body.iter_lines()
 
     def get_next_line(self):
         line = self.stream.readline()

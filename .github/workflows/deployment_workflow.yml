@@ -6,11 +6,28 @@ on:
       - develop
 
 jobs:
+  set-terraform-env:
+    runs-on: ubuntu-latest
+    outputs:
+      terraform-env-list: ${{ steps.set-env.outputs.terraform-env-list }}
+    steps:
+      - name: Determine Terraform environment
+        id: set-env
+        run: |
+          if [ "${GITHUB_REF_NAME}" == "develop" ]; then
+            echo 'terraform-env-list=["dev"]' >> $GITHUB_OUTPUT
+          elif [ "${GITHUB_REF_NAME}" == "staging" ]; then
+            echo 'terraform-env-list=["staging"]' >> $GITHUB_OUTPUT
+          elif [ "${GITHUB_REF_NAME}" == "master" ]; then
+            echo 'terraform-env-list=["prod"]' >> $GITHUB_OUTPUT
+          else
+            echo 'terraform-env-list=[]' >> $GITHUB_OUTPUT
+
   terraform-deploy:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        letter: [A, B, C]
+        env: ${{ fromJSON(needs.set-env.outputs.terraform-env-list) }}
     steps:
       - uses: actions/checkout@v4
       - name: Call hello action

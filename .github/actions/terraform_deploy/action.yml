@@ -26,12 +26,12 @@ runs:
       working-directory: ${{ inputs.directory }}
       run: |
         terraform init \
-          -backend-config="./env/${{ inputs.env }}.backend" \
-          -var-file="./env/${{ inputs.env }}.tfvars"
+          -backend-config="./${{ inputs.env }}/${{ inputs.env }}.backend" \
+          -var-file="./${{ inputs.env }}/${{ inputs.env }}.tfvars"
       shell: bash
 
     - name: Terraform Apply
       working-directory: ${{ inputs.directory }}
       run: |
-        terraform plan -var-file="./env/${{ inputs.env }}.tfvars"
+        terraform plan -var-file="./${{ inputs.env }}/${{ inputs.env }}.tfvars"
       shell: bash

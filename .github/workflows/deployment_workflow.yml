@@ -48,7 +48,7 @@ jobs:
 
   push-docker:
     runs-on: ubuntu-latest
-    needs: run-tests
+    needs: [run-tests, determine-env-outputs]
     environment: AWS
     steps:
       - uses: actions/checkout@v4
@@ -73,7 +73,7 @@ jobs:
 
   terraform-deploy:
     runs-on: ubuntu-latest
-    needs: push-docker
+    needs: [push-docker, determine-env-outputs]
     strategy:
       matrix:
         env: ${{ fromJSON(needs.determine-env-outputs.outputs.terraform-env-list) }}

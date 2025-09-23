@@ -1,0 +1,17 @@
+name: "Terraform deploy"
+description: "Say hello to someone"
+inputs:
+  env:
+    description: "The terraform environment"
+    required: true
+    type: string
+  directory:
+    description: "The terraform configuration directory"
+    required: true
+    type: string
+runs:
+  using: "composite"
+  steps:
+    - name: Print greeting
+      run: echo "Hello ${{ inputs.env }}"
+      shell: bash

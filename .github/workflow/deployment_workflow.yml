@@ -1,0 +1,18 @@
+name: Hello Matrix
+
+on:
+  workflow_dispatch:
+
+jobs:
+  terraform-deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        letter: [A, B, C]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Call hello action
+        uses: ./.github/actions/hello
+        with:
+          env: ${{ matrix.letter }}
+          directory: "Directory"

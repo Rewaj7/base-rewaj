@@ -6,6 +6,8 @@ import boto3
 
 import json
 
+from lib.aws.cloudwatch import CloudwatchMetrics
+
 s3 = boto3.client("s3")
 sns_client = boto3.client('sns')
 SNS_TOPIC_ARN = os.getenv("SNS_TOPIC_ARN")
@@ -70,6 +72,9 @@ class LogAnalyzer:
         if next_line:
             after_timestamp = not self.time_stamp or datetime.strptime(next_line["ts"], LogAnalyzer.DATE_TIME_FORMAT) > self.time_stamp
             is_error = int(next_line["level"] == "ERROR" and after_timestamp)
+            if next_line["level"] == "ERROR":
+                CloudwatchMetrics.push_error_metrics(timestamp=next_line["ts"],
+                                                     service=next_line["service"])
 
         return {
             "service": service,
@@ -93,6 +98,7 @@ class LogAnalyzer:
             self.trigger_alert = True
             if notify_sns:
                 self.publish_sns(total_errors)
+                CloudwatchMetrics.push_alert_metric()
         return return_json
 
     def publish_sns(self, total_errors: int):

@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        env: ${{ fromJSON(needs.set-env.outputs.terraform-env-list) }}
+        env: ${{ fromJSON(needs.set-terraform-env.outputs.terraform-env-list) }}
     steps:
       - uses: actions/checkout@v4
       - name: Call hello action

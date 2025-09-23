@@ -5,7 +5,7 @@ module "service" {
   env = var.env
 
   //ECS Variables
-  cluster_arn = module.ecs.ecs_cluster_arn
+  cluster_arn = aws_ecs_cluster.app_cluster.arn
   desired_count = var.desired_count
   environment_vars = local.environment_variables
   ssm_secrets = local.secrets
@@ -17,11 +17,11 @@ module "service" {
   fargate_memory = var.fargate_memory
 
   //Networking Variables
-  ecs_task_role_arn = module.ecs.ecs_task_arn
-  ecs_task_execution_role_arn = module.ecs.ecs_task_execution_arn
+  ecs_task_role_arn = aws_iam_role.ecs_task.arn
+  ecs_task_execution_role_arn = aws_iam_role.ecs_task_execution.arn
   vpc_id = data.aws_vpc.vpc.id
   private_subnet_ids = data.aws_subnets.private.ids
-  security_group_ids = [module.ecs.security_group_id]
+  security_group_ids = [aws_security_group.ecs_default.id]
 
   //Cloudwatch Variables
   log_group_prefixes = {
@@ -48,7 +48,7 @@ locals {
     env = var.env,
     image = "${data.aws_ecr_repository.ecr.repository_url}:latest-${var.env}",
     fastapi_port = local.open_ports["FASTAPI"]
-    aws_region = data.aws_region.current.name,
+    aws_region = var.aws_region,
     account_id = data.aws_caller_identity.current.account_id,
     alb_container_name = local.alb_container_name
   }

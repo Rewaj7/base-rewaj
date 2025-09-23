@@ -7,7 +7,7 @@ resource "aws_iam_role" "ecs_task_execution" {
         Sid : "",
         Effect : "Allow",
         Principal : {
-          "Service" : "ecs-tasks.amazonaws.com"
+          "Service" : ["ecs-tasks.amazonaws.com"]
         },
         Action : "sts:AssumeRole"
       }
@@ -36,7 +36,7 @@ resource "aws_iam_policy" "ecs-ssm" {
           "ssm:GetParameters"
         ],
         Resource : [
-          "arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/*"
+          "arn:aws:ssm:${var.aws_region}:${data.aws_caller_identity.current.account_id}:parameter/*"
         ]
       }
     ]

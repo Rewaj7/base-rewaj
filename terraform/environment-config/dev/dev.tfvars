@@ -1,8 +1,13 @@
 //Common
 env = "dev"
+aws_region = "eu-west-1"
 
 //VPC
-vpc_id = "vpc-090e7c20d06da7e19"
+vpc_remote_backend_config = {
+  bucket = "devops-assignment-logs-19-08"
+  key    = "rewaj-base-tf/rewaj-base-vpc-dev.tfstate"
+  region = "eu-west-1"
+}
 
 //ECS
 desired_count = 1

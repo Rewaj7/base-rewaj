@@ -13,14 +13,13 @@ variable "aws_region" {
 #---------------------#
 # VPC Variables       #
 #---------------------#
-variable "vpc_remote_backend_bucket" {
+variable "vpc_remote_backend_config" {
   description = ""
-  default = "devops-assignment-logs-19-08"
-}
-
-variable "vpc_remote_backend_file" {
-  description = ""
-  default = "rewaj-base-tf/rewaj-base-vpc-dev.tfstate"
+  default = {
+    bucket = "devops-assignment-logs-19-08"
+    key    = "rewaj-base-tf/rewaj-base-vpc-dev.tfstate"
+    region = "eu-west-1"
+  }
 }
 
 #---------------------#

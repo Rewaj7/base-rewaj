@@ -1,10 +1,6 @@
 data "terraform_remote_state" "vpc" {
   backend = "s3"
-  config = {
-    bucket = var.vpc_remote_backend_bucket
-    key    = var.vpc_remote_backend_file
-    region = var.aws_region
-  }
+  config  = var.vpc_remote_backend_config
 }
 
 

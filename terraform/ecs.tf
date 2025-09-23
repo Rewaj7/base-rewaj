@@ -4,5 +4,5 @@ module "ecs" {
   env        = var.env
 
   //VPC Variables
-  vpc_id     = var.vpc_id
+  vpc_id     = data.aws_vpc.vpc.id
 }

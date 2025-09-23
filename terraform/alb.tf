@@ -4,7 +4,7 @@ module "alb" {
   env = var.env
 
   //VPC
-  vpc_id = var.vpc_id
+  vpc_id = data.aws_vpc.vpc.id
   public_subnets_ids = data.aws_subnets.public.ids
 
   //ALB

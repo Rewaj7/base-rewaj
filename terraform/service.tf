@@ -19,7 +19,7 @@ module "service" {
   //Networking Variables
   ecs_task_role_arn = module.ecs.ecs_task_arn
   ecs_task_execution_role_arn = module.ecs.ecs_task_execution_arn
-  vpc_id = var.vpc_id
+  vpc_id = data.aws_vpc.vpc.id
   private_subnet_ids = data.aws_subnets.private.ids
   security_group_ids = [module.ecs.security_group_id]
 

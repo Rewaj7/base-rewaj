@@ -2,7 +2,7 @@
    jsonencode(
       [
           {
-            "name": "rewaj-base-${env}",
+            "name": fastapi_container_name,
             "image": image,
             "essential": true,
             "volumesFrom": [],

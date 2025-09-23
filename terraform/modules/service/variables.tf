@@ -71,13 +71,35 @@ variable "log_group_prefixes" {
 #------------------#
 # ALB Variables    #
 #------------------#
+variable "enable_alb" {
+  description = "Whether this service should be configured to attach a Target Group"
+  default = false
+}
+
 variable "alb_service_container_name" {
   description = "Container name for the container connected to the ALB"
+  default     = "N/A"
+  validation {
+    condition = var.alb_service_container_name != "N/A" || !var.enable_alb
+    error_message = "Requires alb_service_container_name because ALB service"
+  }
 }
-variable "backend_listen_port" {
+
+variable "alb_container_port" {
   description = "Port the ECS service is listening to"
+  default     = "N/A"
+  validation {
+    condition     = var.alb_container_port != "N/A" || !var.enable_alb
+    error_message = "Requires alb_container_port because ALB service"
+  }
 }
+
 variable "health_check_path" {
   description = "Path on the service to use as a healthcheck"
+  default     = "N/A"
+  validation {
+    condition     = var.health_check_path != "N/A" || !var.enable_alb
+    error_message = "Requires health_check_path because ALB service"
+  }
 }
 

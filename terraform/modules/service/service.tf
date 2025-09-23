@@ -12,10 +12,13 @@ resource "aws_ecs_service" "service" {
     assign_public_ip = false
   }
 
-  load_balancer {
-    target_group_arn = aws_alb_target_group.target_group.arn
-    container_name   = var.alb_service_container_name
-    container_port   = var.backend_listen_port
+  dynamic "load_balancer" {
+    for_each = local.load_balancer_target_group_arns
+    content {
+      target_group_arn = load_balancer.value
+      container_name = var.alb_service_container_name
+      container_port   = var.alb_container_port
+    }
   }
 
   capacity_provider_strategy {

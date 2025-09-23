@@ -1,16 +1,20 @@
+import io
 from datetime import datetime
 
 import boto3
 
-from lib.s3_reader.reader import S3Reader
 import json
 
+s3 = boto3.client("s3")
 
 class LogAnalyzer:
     DATE_TIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
 
     def __init__(self, bucket_name, file_directory, threshold, time_stamp = None):
-        self.s3_reader = S3Reader(bucket_name=bucket_name, file_directory=LogAnalyzer.get_most_recent_json(bucket_name, file_directory))
+        self.bucket_name = bucket_name
+        self.file_directory = LogAnalyzer.get_most_recent_json(bucket_name, file_directory)
+        self.file_body = s3.get_object(Bucket=self.bucket_name, Key=self.file_directory)["Body"]
+        self.stream = io.TextIOWrapper(self.file_body, encoding="utf-8")
         self.threshold = threshold
         self.trigger_alert = False
         self.time_stamp = time_stamp
@@ -37,13 +41,16 @@ class LogAnalyzer:
 
         return latest_file
 
+    def get_next_line(self):
+        line = self.stream.readline()
+        return line if line else None
 
     def get_next_json_line(self):
-        next_line = self.s3_reader.get_next_line()
+        next_line = self.get_next_line()
         return json.loads(next_line) if next_line else None
 
     def close(self):
-        self.s3_reader.close()
+        self.stream.close()
 
     def is_next_error(self):
         next_line = self.get_next_json_line()

@@ -22,6 +22,7 @@ jobs:
             echo 'terraform-env-list=["prod"]' >> $GITHUB_OUTPUT
           else
             echo 'terraform-env-list=[]' >> $GITHUB_OUTPUT
+          fi
 
   terraform-deploy:
     runs-on: ubuntu-latest

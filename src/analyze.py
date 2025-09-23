@@ -13,19 +13,24 @@ def parse_iso8601(s):
 
 def main():
     parser = argparse.ArgumentParser(prog="analyze", description="Analyze CLI tool")
-    # Required arguments
-    parser.add_argument(
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument(
+        "--local",
+        action="store_true",
+        help="Use local logs instead of S3 bucket"
+    )
+    group.add_argument(
         "--bucket",
         type=str,
-        required=True,
         help="Name of the S3 bucket"
     )
+
     parser.add_argument(
         "--prefix",
         type=str,
-        required=True,
-        help="Prefix/folder in the bucket"
+        help="Prefix/folder in the bucket (required if --bucket is used)"
     )
+
     parser.add_argument(
         "--threshold",
         type=int,
@@ -41,7 +46,15 @@ def main():
     )
 
     args = parser.parse_args()
-    log_analyzer = LogAnalyzer(args.bucket, args.prefix, args.threshold, args.since)
+    if args.bucket and not args.prefix:
+        parser.error("--prefix is required when using --bucket")
+
+
+    log_analyzer = LogAnalyzer(bucket_name=args.bucket,
+                               prefix=args.prefix,
+                               threshold=args.threshold,
+                               local=args.local,
+                               time_stamp=args.since)
     report = log_analyzer.generate_report()
     print(report)
     return report

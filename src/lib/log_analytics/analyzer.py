@@ -10,15 +10,23 @@ s3 = boto3.client("s3")
 class LogAnalyzer:
     DATE_TIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
 
-    def __init__(self, bucket_name, file_directory, threshold, time_stamp = None):
-        self.bucket_name = bucket_name
-        self.file_directory = LogAnalyzer.get_most_recent_json(bucket_name, file_directory)
-        self.file_body = s3.get_object(Bucket=self.bucket_name, Key=self.file_directory)["Body"]
-        self.stream = io.TextIOWrapper(self.file_body, encoding="utf-8")
+    def __init__(self, threshold, bucket_name=None, prefix=None, time_stamp = None, local = None):
         self.threshold = threshold
         self.trigger_alert = False
         self.time_stamp = time_stamp
         self.report_json = None
+        if local:
+            self.bucket_name = None
+            self.file_directory = local
+            self.file_body = open(self.file_directory, "rb")
+        elif bucket_name and prefix:
+            self.bucket_name = bucket_name
+            self.file_directory = LogAnalyzer.get_most_recent_json(bucket_name, prefix)
+            self.file_body = s3.get_object(Bucket=self.bucket_name, Key=self.file_directory)["Body"]
+        else:
+            raise Exception("LogAnalyzer object initialized with both local and bucket")
+        self.stream = io.TextIOWrapper(self.file_body, encoding="utf-8")
+
 
 
     @staticmethod
@@ -66,10 +74,6 @@ class LogAnalyzer:
         }
 
     def generate_report(self):
-        self.report_json = self.number_of_errors()
-        return self.report_json
-
-    def number_of_errors(self):
         number_of_errors = {}
         total_errors = 0
         is_next_error = self.is_next_error()
@@ -85,4 +89,5 @@ class LogAnalyzer:
             return_json["alert"] = "true"
             self.trigger_alert = True
         return return_json
+
 

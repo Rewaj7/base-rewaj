@@ -1,7 +1,9 @@
 name: Hello Matrix
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - develop
 
 jobs:
   terraform-deploy:

@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run Python tests
-        uses: ./.github/actions/run-python-tests
+        uses: ./.github/actions/run-tests
 
 
   set-terraform-env:

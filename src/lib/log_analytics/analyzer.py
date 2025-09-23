@@ -1,0 +1,88 @@
+import io
+from datetime import datetime
+
+import boto3
+
+import json
+
+s3 = boto3.client("s3")
+
+class LogAnalyzer:
+    DATE_TIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
+
+    def __init__(self, bucket_name, file_directory, threshold, time_stamp = None):
+        self.bucket_name = bucket_name
+        self.file_directory = LogAnalyzer.get_most_recent_json(bucket_name, file_directory)
+        self.file_body = s3.get_object(Bucket=self.bucket_name, Key=self.file_directory)["Body"]
+        self.stream = io.TextIOWrapper(self.file_body, encoding="utf-8")
+        self.threshold = threshold
+        self.trigger_alert = False
+        self.time_stamp = time_stamp
+        self.report_json = None
+
+
+    @staticmethod
+    def get_most_recent_json(bucket_name, prefix):
+        latest_file = None
+        latest_time = None
+
+        s3 = boto3.client('s3')
+        paginator = s3.get_paginator('list_objects_v2')
+        for page in paginator.paginate(Bucket=bucket_name, Prefix=prefix):
+            for obj in page["Contents"]:
+                key = obj["Key"]
+                filename = key.split("/")[-1]
+                timestamp_str = filename.replace(".jsonl", "")
+                if filename != "":
+                    timestamp = datetime.strptime(timestamp_str, "%Y-%m-%dT%H-%M")
+                    if latest_time is None or timestamp > latest_time:
+                        latest_time = timestamp
+                        latest_file = key
+
+        return latest_file
+
+    def get_next_line(self):
+        line = self.stream.readline()
+        return line if line else None
+
+    def get_next_json_line(self):
+        next_line = self.get_next_line()
+        return json.loads(next_line) if next_line else None
+
+    def close(self):
+        self.stream.close()
+
+    def is_next_error(self):
+        next_line = self.get_next_json_line()
+        service = next_line["service"] if next_line else "N/A"
+        is_error = -1
+        if next_line:
+            after_timestamp = not self.time_stamp or datetime.strptime(next_line["ts"], LogAnalyzer.DATE_TIME_FORMAT) > self.time_stamp
+            is_error = int(next_line["level"] == "ERROR" and after_timestamp)
+
+        return {
+            "service": service,
+            "is_error": is_error
+        }
+
+    def generate_report(self):
+        self.report_json = self.number_of_errors()
+        return self.report_json
+
+    def number_of_errors(self):
+        number_of_errors = {}
+        total_errors = 0
+        is_next_error = self.is_next_error()
+        while is_next_error["is_error"] >= 0:
+            total_errors += int(is_next_error["is_error"])
+            if is_next_error["service"] in number_of_errors:
+                number_of_errors[is_next_error["service"]] += int(is_next_error["is_error"])
+            elif is_next_error["is_error"] >= 1:
+                number_of_errors[is_next_error["service"]] = 1
+            is_next_error = self.is_next_error()
+        return_json = {"byService": number_of_errors, "total": total_errors}
+        if total_errors >= self.threshold:
+            return_json["alert"] = "true"
+            self.trigger_alert = True
+        return return_json
+

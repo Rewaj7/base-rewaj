@@ -83,4 +83,4 @@ jobs:
         uses: ./.github/actions/terraform_deploy
         with:
           env: ${{ matrix.env }}
-          directory: "Directory"
+          directory: "./terraform"

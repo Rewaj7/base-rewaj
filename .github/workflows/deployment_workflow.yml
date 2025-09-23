@@ -6,8 +6,16 @@ on:
       - develop
 
 jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Python tests
+        uses: ./.github/actions/run-python-tests
+
+
   set-terraform-env:
     runs-on: ubuntu-latest
+    needs: run-tests
     outputs:
       terraform-env-list: ${{ steps.set-env.outputs.terraform-env-list }}
     steps:

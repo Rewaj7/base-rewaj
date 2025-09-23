@@ -26,7 +26,7 @@ runs:
       working-directory: ${{ inputs.directory }}
       run: |
         terraform init \
-          -backend-config="./environment-config/${{ inputs.env }}/${{ inputs.env }}.backend" \
+          -backend-config="./environment-config/${{ inputs.env }}/${{ inputs.env }}.tfbackend" \
           -var-file="./environment-config/${{ inputs.env }}/${{ inputs.env }}.tfvars"
       shell: bash
 

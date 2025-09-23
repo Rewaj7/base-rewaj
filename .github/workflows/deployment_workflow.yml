@@ -26,6 +26,7 @@ jobs:
 
   terraform-deploy:
     runs-on: ubuntu-latest
+    needs: set-terraform-env
     strategy:
       matrix:
         env: ${{ fromJSON(needs.set-terraform-env.outputs.terraform-env-list) }}
@@ -34,5 +35,5 @@ jobs:
       - name: Call hello action
         uses: ./.github/actions/terraform_deploy
         with:
-          env: ${{ matrix.letter }}
+          env: ${{ matrix.env }}
           directory: "Directory"

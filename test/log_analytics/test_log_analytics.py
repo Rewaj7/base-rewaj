@@ -1,7 +1,7 @@
 import unittest
 from datetime import datetime
 
-from log_analytics.analyzer import LogAnalyzer
+from lib.log_analytics.analyzer import LogAnalyzer
 
 
 class TestLogAnalyzer(unittest.TestCase):
@@ -47,7 +47,7 @@ class TestLogAnalyzer(unittest.TestCase):
 
 
     def test_get_next_json_line(self):
-        analyzer = LogAnalyzer("devops-assignment-logs-19-08", "tests/2025-09-15T12/", 5)
+        analyzer = LogAnalyzer("devops-assignment-logs-19-08", "tests/2025-09-15T12", 5)
         first_json_line = analyzer.get_next_json_line()
         self.assertEquals(first_json_line["service"], "orders")
         self.assertEquals(first_json_line["msg"], "new order received")

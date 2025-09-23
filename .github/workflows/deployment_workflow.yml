@@ -8,10 +8,19 @@ on:
 jobs:
   run-tests:
     runs-on: ubuntu-latest
+    environment: AWS
     steps:
       - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
       - name: Run Python tests
-        uses: ./.github/actions/run-tests
+        uses: ./.github/actions/run-python-tests
 
 
   set-terraform-env:

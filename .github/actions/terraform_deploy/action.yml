@@ -1,17 +1,37 @@
-name: "Terraform deploy"
-description: "Say hello to someone"
+name: "Terraform Deploy"
+description: "Deploy Terraform configuration in a given directory using env-specific backend and tfvars"
+
 inputs:
   env:
-    description: "The terraform environment"
+    description: "The Terraform environment (used to pick env/backend files)"
     required: true
     type: string
   directory:
-    description: "The terraform configuration directory"
+    description: "The Terraform configuration directory"
     required: true
     type: string
+
 runs:
   using: "composite"
   steps:
-    - name: Print greeting
-      run: echo "Hello ${{ inputs.env }}"
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.6.0
+
+    - name: Initialize Terraform
+      working-directory: ${{ inputs.directory }}
+      run: |
+        terraform init \
+          -backend-config="./env/${{ inputs.env }}.backend" \
+          -var-file="./env/${{ inputs.env }}.tfvars"
+      shell: bash
+
+    - name: Terraform Apply
+      working-directory: ${{ inputs.directory }}
+      run: |
+        terraform plan -var-file="./env/${{ inputs.env }}.tfvars"
       shell: bash

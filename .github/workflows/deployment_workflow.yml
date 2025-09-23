@@ -74,6 +74,7 @@ jobs:
   terraform-deploy:
     runs-on: ubuntu-latest
     needs: [push-docker, determine-env-outputs]
+    environment: AWS
     strategy:
       matrix:
         env: ${{ fromJSON(needs.determine-env-outputs.outputs.terraform-env-list) }}

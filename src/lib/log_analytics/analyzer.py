@@ -55,7 +55,7 @@ class LogAnalyzer:
 
     def get_next_json_line(self):
         next_line = self.get_next_line()
-        return json.loads(next_line) if next_line else None
+        return json.loads(next_line) if next_line.strip() else None
 
     def close(self):
         self.stream.close()

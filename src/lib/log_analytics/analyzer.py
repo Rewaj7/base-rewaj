@@ -1,4 +1,5 @@
 import io
+import os
 from datetime import datetime
 
 import boto3
@@ -6,6 +7,8 @@ import boto3
 import json
 
 s3 = boto3.client("s3")
+sns_client = boto3.client('sns')
+SNS_TOPIC_ARN = os.getenv("SNS_TOPIC_ARN")
 
 class LogAnalyzer:
     DATE_TIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
@@ -73,7 +76,7 @@ class LogAnalyzer:
             "is_error": is_error
         }
 
-    def generate_report(self):
+    def generate_report(self, notify_sns: bool = False):
         number_of_errors = {}
         total_errors = 0
         is_next_error = self.is_next_error()
@@ -88,6 +91,31 @@ class LogAnalyzer:
         if total_errors >= self.threshold:
             return_json["alert"] = "true"
             self.trigger_alert = True
+            if notify_sns:
+                self.publish_sns(total_errors)
         return return_json
+
+    def publish_sns(self, total_errors: int):
+        message = "S3 Logs Error Alert"
+        message_attributes = {
+            'file_directory': {
+                'DataType': 'String',
+                'StringValue': self.file_directory
+            },
+            'number_of_alerts': {
+                'DataType': 'Number',
+                'StringValue': str(total_errors)
+            }
+        }
+
+        # Publish the message
+        response = sns_client.publish(
+            TopicArn=SNS_TOPIC_ARN,
+            Message=message,
+            MessageAttributes=message_attributes,
+            Subject='S3 Logs Error Alert'
+        )
+
+        print("Message ID:", response['MessageId'])
 
 

@@ -40,6 +40,7 @@ locals {
   alb_container_name = "rewaj-base-${var.env}"
 
   environment_variables = {
+    SNS_TOPIC_ARN = aws_sns_topic.notify_topic.arn
   }
 
   secrets = {

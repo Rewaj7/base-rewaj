@@ -36,6 +36,7 @@ class TestLogAnalyzer(unittest.TestCase):
             prefix="tests",
             threshold=5)
         self.assertEqual(analyzer.file_directory, "tests/2025-09-15T16-00.jsonl")
+        analyzer.close()
 
     def test_local_get_next_line(self):
         analyzer = LogAnalyzer(

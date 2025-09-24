@@ -31,7 +31,6 @@ class CloudwatchMetrics:
             ]
         )
 
-
     @staticmethod
     def push_alert_metric():
         """

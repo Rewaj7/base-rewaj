@@ -33,5 +33,5 @@ runs:
     - name: Terraform Apply
       working-directory: ${{ inputs.directory }}
       run: |
-        terraform plan -var-file="./environment-config/${{ inputs.env }}/${{ inputs.env }}.tfvars"
+        terraform apply -auto-approve -var-file="./environment-config/${{ inputs.env }}/${{ inputs.env }}.tfvars"
       shell: bash

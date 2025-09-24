@@ -53,7 +53,7 @@ resource "aws_iam_role_policy_attachment" "s3_read" {
 }
 
 resource "aws_iam_policy" "sns_publish_policy" {
-  name        = "ECS_SNS_Publish_Policy"
+  name        = "ECS_SNS_Publish_Policy_${var.env}"
   description = "Allow ECS task to publish messages to SNS topic"
 
   policy = jsonencode({

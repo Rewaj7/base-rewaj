@@ -33,4 +33,5 @@ jobs:
 
       - name: Run unit tests
         run: |
+          export PYTHONPATH=./src:$PYTHONPATH
           python -m unittest discover -s "test"

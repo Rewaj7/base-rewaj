@@ -1,0 +1,311 @@
+{"ts":"2025-09-19T10:00:00Z","service":"api","level":"INFO","msg":"GET /status 200","latency_ms":42}
+{"ts":"2025-09-19T10:00:01Z","service":"orders","level":"ERROR","msg":"payment declined","orderId":"o-1001","customer":{"id":"c-1","region":"us"}}
+{"ts":"2025-09-19T10:00:02Z","service":"billing","level":"WARN","msg":"slow response from payment gateway","latency_ms":1200}
+{"ts":"2025-09-19T10:00:03Z","service":"auth","level":"INFO","msg":"user login success","userId":"u-1"}
+{"ts":"2025-09-19T10:00:04Z","service":"shipping","level":"ERROR","msg":"label printer offline","shipmentId":"sh-2001"}
+{"ts":"2025-09-19T10:00:05Z","service":"orders","level":"INFO","msg":"new order received","orderId":"o-1002"}
+{"ts":"2025-09-19T10:00:06Z","service":"billing","level":"ERROR","msg":"db connection timeout","retryCount":1}
+{"ts":"2025-09-19T10:00:07Z","service":"api","level":"INFO","msg":"GET /products 200","latency_ms":55}
+{"ts":"2025-09-19T10:00:08Z","service":"auth","level":"ERROR","msg":"invalid password","userId":"u-2","ip":"203.0.113.10"}
+{"ts":"2025-09-19T10:00:09Z","service":"shipping","level":"INFO","msg":"shipment queued","shipmentId":"sh-2002"}
+{"ts":"2025-09-19T10:00:10Z","service":"orders","level":"ERROR","msg":"inventory shortfall","orderId":"o-1003","sku":"sku-99"}
+{"ts":"2025-09-19T10:00:11Z","service":"billing","level":"INFO","msg":"charge succeeded","orderId":"o-1004","amount":199.99}
+{"ts":"2025-09-19T10:00:12Z","service":"shipping","level":"WARN","msg":"carrier API degraded","carrier":"UPS"}
+{"ts":"2025-09-19T10:00:13Z","service":"auth","level":"ERROR","msg":"account locked","userId":"u-3"}
+{"ts":"2025-09-19T10:00:14Z","service":"api","level":"ERROR","msg":"timeout from upstream","endpoint":"/checkout","latency_ms":3000}
+{"ts":"2025-09-19T10:00:15Z","service":"orders","level":"INFO","msg":"order confirmed","orderId":"o-1005"}
+{"ts":"2025-09-19T10:00:16Z","service":"billing","level":"ERROR","msg":"charge failed","orderId":"o-1006","reason":"gateway-down"}
+{"ts":"2025-09-19T10:00:17Z","service":"auth","level":"WARN","msg":"multiple failed logins","userId":"u-4"}
+{"ts":"2025-09-19T10:00:18Z","service":"shipping","level":"INFO","msg":"shipment dispatched","shipmentId":"sh-2003"}
+{"ts":"2025-09-19T10:00:19Z","service":"api","level":"INFO","msg":"GET /health 200","latency_ms":12}
+
+{"ts":"2025-09-19T10:00:20Z","service":"api","level":"INFO","msg":"GET /status 200","latency_ms":43}
+{"ts":"2025-09-19T10:00:21Z","service":"orders","level":"ERROR","msg":"payment declined","orderId":"o-1007","customer":{"id":"c-2","region":"eu"}}
+{"ts":"2025-09-19T10:00:22Z","service":"billing","level":"WARN","msg":"slow response from payment gateway","latency_ms":1300}
+{"ts":"2025-09-19T10:00:23Z","service":"auth","level":"INFO","msg":"user login success","userId":"u-5"}
+{"ts":"2025-09-19T10:00:24Z","service":"shipping","level":"ERROR","msg":"label printer offline","shipmentId":"sh-2004"}
+{"ts":"2025-09-19T10:00:25Z","service":"orders","level":"INFO","msg":"new order received","orderId":"o-1008"}
+{"ts":"2025-09-19T10:00:26Z","service":"billing","level":"ERROR","msg":"db connection timeout","retryCount":2}
+{"ts":"2025-09-19T10:00:27Z","service":"api","level":"INFO","msg":"GET /products 200","latency_ms":56}
+{"ts":"2025-09-19T10:00:28Z","service":"auth","level":"ERROR","msg":"invalid password","userId":"u-6","ip":"203.0.113.11"}
+{"ts":"2025-09-19T10:00:29Z","service":"shipping","level":"INFO","msg":"shipment queued","shipmentId":"sh-2005"}
+{"ts":"2025-09-19T10:00:30Z","service":"orders","level":"ERROR","msg":"inventory shortfall","orderId":"o-1009","sku":"sku-100"}
+{"ts":"2025-09-19T10:00:31Z","service":"billing","level":"INFO","msg":"charge succeeded","orderId":"o-1010","amount":299.99}
+{"ts":"2025-09-19T10:00:32Z","service":"shipping","level":"WARN","msg":"carrier API degraded","carrier":"FedEx"}
+{"ts":"2025-09-19T10:00:33Z","service":"auth","level":"ERROR","msg":"account locked","userId":"u-7"}
+{"ts":"2025-09-19T10:00:34Z","service":"api","level":"ERROR","msg":"timeout from upstream","endpoint":"/checkout","latency_ms":3100}
+{"ts":"2025-09-19T10:00:35Z","service":"orders","level":"INFO","msg":"order confirmed","orderId":"o-1011"}
+{"ts":"2025-09-19T10:00:36Z","service":"billing","level":"ERROR","msg":"charge failed","orderId":"o-1012","reason":"gateway-down"}
+{"ts":"2025-09-19T10:00:37Z","service":"auth","level":"WARN","msg":"multiple failed logins","userId":"u-8"}
+{"ts":"2025-09-19T10:00:38Z","service":"shipping","level":"INFO","msg":"shipment dispatched","shipmentId":"sh-2006"}
+{"ts":"2025-09-19T10:00:39Z","service":"api","level":"INFO","msg":"GET /health 200","latency_ms":13}
+{"ts":"2025-09-19T10:00:40Z","service":"api","level":"INFO","msg":"GET /status 200","latency_ms":44}
+{"ts":"2025-09-19T10:00:41Z","service":"orders","level":"ERROR","msg":"payment declined","orderId":"o-1013","customer":{"id":"c-3","region":"apac"}}
+{"ts":"2025-09-19T10:00:42Z","service":"billing","level":"WARN","msg":"slow response from payment gateway","latency_ms":1400}
+{"ts":"2025-09-19T10:00:43Z","service":"auth","level":"INFO","msg":"user login success","userId":"u-9"}
+{"ts":"2025-09-19T10:00:44Z","service":"shipping","level":"ERROR","msg":"label printer offline","shipmentId":"sh-2007"}
+{"ts":"2025-09-19T10:00:45Z","service":"orders","level":"INFO","msg":"new order received","orderId":"o-1014"}
+{"ts":"2025-09-19T10:00:46Z","service":"billing","level":"ERROR","msg":"db connection timeout","retryCount":3}
+{"ts":"2025-09-19T10:00:47Z","service":"api","level":"INFO","msg":"GET /products 200","latency_ms":57}
+{"ts":"2025-09-19T10:00:48Z","service":"auth","level":"ERROR","msg":"invalid password","userId":"u-10","ip":"203.0.113.12"}
+{"ts":"2025-09-19T10:00:49Z","service":"shipping","level":"INFO","msg":"shipment queued","shipmentId":"sh-2008"}
+{"ts":"2025-09-19T10:00:50Z","service":"orders","level":"ERROR","msg":"inventory shortfall","orderId":"o-1015","sku":"sku-101"}
+{"ts":"2025-09-19T10:00:51Z","service":"billing","level":"INFO","msg":"charge succeeded","orderId":"o-1016","amount":399.99}
+{"ts":"2025-09-19T10:00:52Z","service":"shipping","level":"WARN","msg":"carrier API degraded","carrier":"DHL"}
+{"ts":"2025-09-19T10:00:53Z","service":"auth","level":"ERROR","msg":"account locked","userId":"u-11"}
+{"ts":"2025-09-19T10:00:54Z","service":"api","level":"ERROR","msg":"timeout from upstream","endpoint":"/checkout","latency_ms":3200}
+{"ts":"2025-09-19T10:00:55Z","service":"orders","level":"INFO","msg":"order confirmed","orderId":"o-1017"}
+{"ts":"2025-09-19T10:00:56Z","service":"billing","level":"ERROR","msg":"charge failed","orderId":"o-1018","reason":"gateway-down"}
+{"ts":"2025-09-19T10:00:57Z","service":"auth","level":"WARN","msg":"multiple failed logins","userId":"u-12"}
+{"ts":"2025-09-19T10:00:58Z","service":"shipping","level":"INFO","msg":"shipment dispatched","shipmentId":"sh-2009"}
+{"ts":"2025-09-19T10:00:59Z","service":"api","level":"INFO","msg":"GET /health 200","latency_ms":14}
+{"ts":"2025-09-19T10:01:00Z","service":"api","level":"INFO","msg":"GET /status 200","latency_ms":45}
+{"ts":"2025-09-19T10:01:01Z","service":"orders","level":"ERROR","msg":"payment declined","orderId":"o-1019","customer":{"id":"c-4","region":"us"}}
+{"ts":"2025-09-19T10:01:02Z","service":"billing","level":"WARN","msg":"slow response from payment gateway","latency_ms":1500}
+{"ts":"2025-09-19T10:01:03Z","service":"auth","level":"INFO","msg":"user login success","userId":"u-13"}
+{"ts":"2025-09-19T10:01:04Z","service":"shipping","level":"ERROR","msg":"label printer offline","shipmentId":"sh-2010"}
+{"ts":"2025-09-19T10:01:05Z","service":"orders","level":"INFO","msg":"new order received","orderId":"o-1020"}
+{"ts":"2025-09-19T10:01:06Z","service":"billing","level":"ERROR","msg":"db connection timeout","retryCount":4}
+{"ts":"2025-09-19T10:01:07Z","service":"api","level":"INFO","msg":"GET /products 200","latency_ms":58}
+{"ts":"2025-09-19T10:01:08Z","service":"auth","level":"ERROR","msg":"invalid password","userId":"u-14","ip":"203.0.113.13"}
+{"ts":"2025-09-19T10:01:09Z","service":"shipping","level":"INFO","msg":"shipment queued","shipmentId":"sh-2011"}
+{"ts":"2025-09-19T10:01:10Z","service":"orders","level":"ERROR","msg":"inventory shortfall","orderId":"o-1021","sku":"sku-102"}
+{"ts":"2025-09-19T10:01:11Z","service":"billing","level":"INFO","msg":"charge succeeded","orderId":"o-1022","amount":499.99}
+{"ts":"2025-09-19T10:01:12Z","service":"shipping","level":"WARN","msg":"carrier API degraded","carrier":"UPS"}
+{"ts":"2025-09-19T10:01:13Z","service":"auth","level":"ERROR","msg":"account locked","userId":"u-15"}
+{"ts":"2025-09-19T10:01:14Z","service":"api","level":"ERROR","msg":"timeout from upstream","endpoint":"/checkout","latency_ms":3300}
+{"ts":"2025-09-19T10:01:15Z","service":"orders","level":"INFO","msg":"order confirmed","orderId":"o-1023"}
+{"ts":"2025-09-19T10:01:16Z","service":"billing","level":"ERROR","msg":"charge failed","orderId":"o-1024","reason":"gateway-down"}
+{"ts":"2025-09-19T10:01:17Z","service":"auth","level":"WARN","msg":"multiple failed logins","userId":"u-16"}
+{"ts":"2025-09-19T10:01:18Z","service":"shipping","level":"INFO","msg":"shipment dispatched","shipmentId":"sh-2012"}
+{"ts":"2025-09-19T10:01:19Z","service":"api","level":"INFO","msg":"GET /health 200","latency_ms":15}
+{"ts":"2025-09-19T10:01:20Z","service":"api","level":"INFO","msg":"GET /status 200","latency_ms":46}
+{"ts":"2025-09-19T10:01:21Z","service":"orders","level":"ERROR","msg":"payment declined","orderId":"o-1025","customer":{"id":"c-5","region":"eu"}}
+{"ts":"2025-09-19T10:01:22Z","service":"billing","level":"WARN","msg":"slow response from payment gateway","latency_ms":1600}
+{"ts":"2025-09-19T10:01:23Z","service":"auth","level":"INFO","msg":"user login success","userId":"u-17"}
+{"ts":"2025-09-19T10:01:24Z","service":"shipping","level":"ERROR","msg":"label printer offline","shipmentId":"sh-2013"}
+{"ts":"2025-09-19T10:01:25Z","service":"orders","level":"INFO","msg":"new order received","orderId":"o-1026"}
+{"ts":"2025-09-19T10:01:26Z","service":"billing","level":"ERROR","msg":"db connection timeout","retryCount":5}
+{"ts":"2025-09-19T10:01:27Z","service":"api","level":"INFO","msg":"GET /products 200","latency_ms":59}
+{"ts":"2025-09-19T10:01:28Z","service":"auth","level":"ERROR","msg":"invalid password","userId":"u-18","ip":"203.0.113.14"}
+{"ts":"2025-09-19T10:01:29Z","service":"shipping","level":"INFO","msg":"shipment queued","shipmentId":"sh-2014"}
+{"ts":"2025-09-19T10:01:30Z","service":"orders","level":"ERROR","msg":"inventory shortfall","orderId":"o-1027","sku":"sku-103"}
+{"ts":"2025-09-19T10:01:31Z","service":"billing","level":"INFO","msg":"charge succeeded","orderId":"o-1028","amount":599.99}
+{"ts":"2025-09-19T10:01:32Z","service":"shipping","level":"WARN","msg":"carrier API degraded","carrier":"FedEx"}
+{"ts":"2025-09-19T10:01:33Z","service":"auth","level":"ERROR","msg":"account locked","userId":"u-19"}
+{"ts":"2025-09-19T10:01:34Z","service":"api","level":"ERROR","msg":"timeout from upstream","endpoint":"/checkout","latency_ms":3400}
+{"ts":"2025-09-19T10:01:35Z","service":"orders","level":"INFO","msg":"order confirmed","orderId":"o-1029"}
+{"ts":"2025-09-19T10:01:36Z","service":"billing","level":"ERROR","msg":"charge failed","orderId":"o-1030","reason":"gateway-down"}
+{"ts":"2025-09-19T10:01:37Z","service":"auth","level":"WARN","msg":"multiple failed logins","userId":"u-20"}
+{"ts":"2025-09-19T10:01:38Z","service":"shipping","level":"INFO","msg":"shipment dispatched","shipmentId":"sh-2015"}
+
+# Diverse, complex, and real-world log lines (including malformed, partial, and non-JSON lines)
+{"ts":"2025-09-19T10:01:39Z","service":"api","level":"DEBUG","msg":"user-agent: curl/7.64.1","headers":{"accept":"*/*"}}
+{"ts":"2025-09-19T10:01:40Z","service":"orders","level":"ERROR","msg":"orderId missing","details":null}
+{"ts":"2025-09-19T10:01:41Z","service":"billing","level":"INFO","msg":"chargeback processed","orderId":"o-2001","amount":-49.99,"currency":"USD"}
+{"ts":"2025-09-19T10:01:42Z","service":"auth","level":"WARN","msg":"jwt expired","userId":"u-99","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"}
+{"ts":"2025-09-19T10:01:43Z","service":"shipping","level":"ERROR","msg":"address not found","shipmentId":"sh-3001","address":{}}
+{"ts":"2025-09-19T10:01:44Z","service":"api","level":"INFO","msg":"POST /login 200","latency_ms":88,"ip":"10.0.0.1"}
+{"ts":"2025-09-19T10:01:45Z","service":"orders","level":"ERROR","msg":"duplicate order","orderId":"o-2002","customer":{"id":"c-10"}}
+{"ts":"2025-09-19T10:01:46Z","service":"billing","level":"FATAL","msg":"out of memory","host":"billing-1"}
+{"ts":"2025-09-19T10:01:47Z","service":"auth","level":"INFO","msg":"user logout","userId":"u-100"}
+{"ts":"2025-09-19T10:01:48Z","service":"shipping","level":"INFO","msg":"tracking update","shipmentId":"sh-3002","status":"in transit"}
+{"ts":"2025-09-19T10:01:49Z","service":"api","level":"ERROR","msg":"json parse error","body":"{\"foo\":bar}"}
+{"ts":"2025-09-19T10:01:50Z","service":"orders","level":"WARN","msg":"order delayed","orderId":"o-2003","delay_min":15}
+{"ts":"2025-09-19T10:01:51Z","service":"billing","level":"INFO","msg":"refund issued","orderId":"o-2004","amount":12.34}
+{"ts":"2025-09-19T10:01:52Z","service":"auth","level":"ERROR","msg":"ldap connection failed","server":"ldap1"}
+{"ts":"2025-09-19T10:01:53Z","service":"shipping","level":"INFO","msg":"carrier switched","shipmentId":"sh-3003","from":"DHL","to":"FedEx"}
+{"ts":"2025-09-19T10:01:54Z","service":"api","level":"INFO","msg":"GET /metrics 200","latency_ms":5}
+{"ts":"2025-09-19T10:01:55Z","service":"orders","level":"ERROR","msg":"sku not found","orderId":"o-2005","sku":"sku-404"}
+{"ts":"2025-09-19T10:01:56Z","service":"billing","level":"WARN","msg":"currency mismatch","orderId":"o-2006","expected":"USD","actual":"EUR"}
+{"ts":"2025-09-19T10:01:57Z","service":"auth","level":"INFO","msg":"password reset requested","userId":"u-101"}
+{"ts":"2025-09-19T10:01:58Z","service":"shipping","level":"ERROR","msg":"customs hold","shipmentId":"sh-3004","country":"CN"}
+{"ts":"2025-09-19T10:01:59Z","service":"api","level":"INFO","msg":"GET /docs 404","latency_ms":2}
+{"ts":"2025-09-19T10:02:00Z","service":"orders","level":"ERROR","msg":"orderId format invalid","orderId":"bad-id"}
+{"ts":"2025-09-19T10:02:01Z","service":"billing","level":"INFO","msg":"subscription renewed","userId":"u-102","plan":"pro"}
+{"ts":"2025-09-19T10:02:02Z","service":"auth","level":"WARN","msg":"login throttled","userId":"u-103","attempts":7}
+{"ts":"2025-09-19T10:02:03Z","service":"shipping","level":"INFO","msg":"delivery confirmed","shipmentId":"sh-3005","signed_by":"John Doe"}
+{"ts":"2025-09-19T10:02:04Z","service":"api","level":"ERROR","msg":"timeout","endpoint":"/external","latency_ms":9999}
+{"ts":"2025-09-19T10:02:05Z","service":"orders","level":"INFO","msg":"order split","orderId":"o-2007","parts":2}
+{"ts":"2025-09-19T10:02:06Z","service":"billing","level":"ERROR","msg":"payment gateway 502","gateway":"stripe"}
+{"ts":"2025-09-19T10:02:07Z","service":"auth","level":"INFO","msg":"user registered","userId":"u-104","email":"foo@bar.com"}
+{"ts":"2025-09-19T10:02:08Z","service":"shipping","level":"WARN","msg":"address incomplete","shipmentId":"sh-3006"}
+{"ts":"2025-09-19T10:02:09Z","service":"api","level":"INFO","msg":"GET /robots.txt 200"}
+{"ts":"2025-09-19T10:02:10Z","service":"orders","level":"ERROR","msg":"order cancelled","orderId":"o-2008","reason":"customer request"}
+{"ts":"2025-09-19T10:02:11Z","service":"billing","level":"INFO","msg":"invoice sent","orderId":"o-2009","email":"baz@qux.com"}
+{"ts":"2025-09-19T10:02:12Z","service":"auth","level":"ERROR","msg":"oauth token invalid","provider":"google"}
+{"ts":"2025-09-19T10:02:13Z","service":"shipping","level":"INFO","msg":"package rerouted","shipmentId":"sh-3007","new_address":"123 New St"}
+{"ts":"2025-09-19T10:02:14Z","service":"api","level":"WARN","msg":"deprecated endpoint used","endpoint":"/v1/old"}
+{"ts":"2025-09-19T10:02:15Z","service":"orders","level":"ERROR","msg":"order not found","orderId":"o-2010"}
+{"ts":"2025-09-19T10:02:16Z","service":"billing","level":"INFO","msg":"tax calculated","orderId":"o-2011","tax":3.21}
+{"ts":"2025-09-19T10:02:17Z","service":"auth","level":"WARN","msg":"user locked out","userId":"u-105"}
+{"ts":"2025-09-19T10:02:18Z","service":"shipping","level":"ERROR","msg":"label misprint","shipmentId":"sh-3008"}
+{"ts":"2025-09-19T10:02:19Z","service":"api","level":"INFO","msg":"GET /favicon.ico 200"}
+{"ts":"2025-09-19T10:02:20Z","service":"orders","level":"ERROR","msg":"order already shipped","orderId":"o-2012"}
+{"ts":"2025-09-19T10:02:21Z","service":"billing","level":"WARN","msg":"invoice overdue","orderId":"o-2013","days":5}
+{"ts":"2025-09-19T10:02:22Z","service":"auth","level":"INFO","msg":"user email verified","userId":"u-106"}
+{"ts":"2025-09-19T10:02:23Z","service":"shipping","level":"INFO","msg":"delivery window updated","shipmentId":"sh-3009","window":"14-16"}
+{"ts":"2025-09-19T10:02:24Z","service":"api","level":"ERROR","msg":"rate limit exceeded","ip":"10.0.0.2"}
+{"ts":"2025-09-19T10:02:25Z","service":"orders","level":"INFO","msg":"order merged","orderId":"o-2014","merged_from":["o-2013","o-2012"]}
+{"ts":"2025-09-19T10:02:26Z","service":"billing","level":"ERROR","msg":"chargeback dispute","orderId":"o-2015"}
+{"ts":"2025-09-19T10:02:27Z","service":"auth","level":"INFO","msg":"user MFA enabled","userId":"u-107"}
+{"ts":"2025-09-19T10:02:28Z","service":"shipping","level":"WARN","msg":"carrier delay","shipmentId":"sh-3010","carrier":"UPS"}
+{"ts":"2025-09-19T10:02:29Z","service":"api","level":"INFO","msg":"GET /sitemap.xml 200"}
+{"ts":"2025-09-19T10:02:30Z","service":"orders","level":"ERROR","msg":"orderId collision","orderId":"o-2016"}
+{"ts":"2025-09-19T10:02:31Z","service":"billing","level":"INFO","msg":"payment method updated","userId":"u-108"}
+{"ts":"2025-09-19T10:02:32Z","service":"auth","level":"ERROR","msg":"session expired","userId":"u-109"}
+{"ts":"2025-09-19T10:02:33Z","service":"shipping","level":"INFO","msg":"package held at facility","shipmentId":"sh-3011"}
+{"ts":"2025-09-19T10:02:34Z","service":"api","level":"WARN","msg":"unexpected response","code":502}
+{"ts":"2025-09-19T10:02:35Z","service":"orders","level":"ERROR","msg":"orderId null"}
+{"ts":"2025-09-19T10:02:36Z","service":"billing","level":"INFO","msg":"discount applied","orderId":"o-2017","discount":5.00}
+{"ts":"2025-09-19T10:02:37Z","service":"auth","level":"WARN","msg":"user not found","userId":"u-110"}
+{"ts":"2025-09-19T10:02:38Z","service":"shipping","level":"ERROR","msg":"invalid tracking number","shipmentId":"sh-3012"}
+{"ts":"2025-09-19T10:02:39Z","service":"api","level":"INFO","msg":"GET /ping 200"}
+{"ts":"2025-09-19T10:02:40Z","service":"orders","level":"ERROR","msg":"orderId negative","orderId":"-1"}
+{"ts":"2025-09-19T10:02:41Z","service":"billing","level":"WARN","msg":"payment pending","orderId":"o-2018"}
+{"ts":"2025-09-19T10:02:42Z","service":"auth","level":"INFO","msg":"user password changed","userId":"u-111"}
+{"ts":"2025-09-19T10:02:43Z","service":"shipping","level":"INFO","msg":"package returned","shipmentId":"sh-3013"}
+{"ts":"2025-09-19T10:02:44Z","service":"api","level":"ERROR","msg":"internal server error","trace_id":"abc123"}
+{"ts":"2025-09-19T10:02:45Z","service":"orders","level":"INFO","msg":"order flagged","orderId":"o-2019","flag":"fraud"}
+{"ts":"2025-09-19T10:02:46Z","service":"billing","level":"ERROR","msg":"payment declined","orderId":"o-2020","reason":"insufficient funds"}
+{"ts":"2025-09-19T10:02:47Z","service":"auth","level":"INFO","msg":"user session started","userId":"u-112"}
+{"ts":"2025-09-19T10:02:48Z","service":"shipping","level":"WARN","msg":"weather delay","shipmentId":"sh-3014"}
+{"ts":"2025-09-19T10:02:49Z","service":"api","level":"INFO","msg":"GET /api/v2/health 200"}
+{"ts":"2025-09-19T10:02:50Z","service":"orders","level":"ERROR","msg":"orderId too long","orderId":"o-2021-EXTRA-LONG-STRING"}
+{"ts":"2025-09-19T10:02:51Z","service":"billing","level":"INFO","msg":"chargeback won","orderId":"o-2022"}
+{"ts":"2025-09-19T10:02:52Z","service":"auth","level":"ERROR","msg":"user banned","userId":"u-113"}
+{"ts":"2025-09-19T10:02:53Z","service":"shipping","level":"INFO","msg":"package destroyed","shipmentId":"sh-3015"}
+{"ts":"2025-09-19T10:02:54Z","service":"api","level":"WARN","msg":"cache miss","key":"user:u-114"}
+{"ts":"2025-09-19T10:02:55Z","service":"orders","level":"ERROR","msg":"orderId empty","orderId":""}
+{"ts":"2025-09-19T10:02:56Z","service":"billing","level":"INFO","msg":"payment retried","orderId":"o-2023"}
+{"ts":"2025-09-19T10:02:57Z","service":"auth","level":"WARN","msg":"user disabled","userId":"u-115"}
+{"ts":"2025-09-19T10:02:58Z","service":"shipping","level":"ERROR","msg":"shipment lost","shipmentId":"sh-3016"}
+{"ts":"2025-09-19T10:02:59Z","service":"api","level":"INFO","msg":"GET /api/v2/status 200"}
+{"ts":"2025-09-19T10:03:00Z","service":"orders","level":"ERROR","msg":"orderId not string","orderId":2024}
+{"ts":"2025-09-19T10:03:01Z","service":"billing","level":"WARN","msg":"chargeback pending","orderId":"o-2025"}
+{"ts":"2025-09-19T10:03:02Z","service":"auth","level":"INFO","msg":"user created","userId":"u-116"}
+{"ts":"2025-09-19T10:03:03Z","service":"shipping","level":"INFO","msg":"package scanned","shipmentId":"sh-3017"}
+{"ts":"2025-09-19T10:03:04Z","service":"api","level":"ERROR","msg":"service unavailable","service":"orders"}
+{"ts":"2025-09-19T10:03:05Z","service":"orders","level":"INFO","msg":"order completed","orderId":"o-2026"}
+{"ts":"2025-09-19T10:03:06Z","service":"billing","level":"ERROR","msg":"refund failed","orderId":"o-2027"}
+{"ts":"2025-09-19T10:03:07Z","service":"auth","level":"INFO","msg":"user MFA disabled","userId":"u-117"}
+{"ts":"2025-09-19T10:03:08Z","service":"shipping","level":"WARN","msg":"address changed","shipmentId":"sh-3018"}
+{"ts":"2025-09-19T10:03:09Z","service":"api","level":"INFO","msg":"GET /api/v2/metrics 200"}
+{"ts":"2025-09-19T10:03:10Z","service":"orders","level":"ERROR","msg":"orderId whitespace","orderId":"   "}
+{"ts":"2025-09-19T10:03:11Z","service":"billing","level":"INFO","msg":"payment confirmed","orderId":"o-2028"}
+{"ts":"2025-09-19T10:03:12Z","service":"auth","level":"ERROR","msg":"user not activated","userId":"u-118"}
+{"ts":"2025-09-19T10:03:13Z","service":"shipping","level":"INFO","msg":"package delivered","shipmentId":"sh-3019"}
+{"ts":"2025-09-19T10:03:14Z","service":"api","level":"WARN","msg":"slow query","query":"SELECT * FROM orders"}
+{"ts":"2025-09-19T10:03:15Z","service":"orders","level":"ERROR","msg":"orderId special chars","orderId":"o-!@#$"}
+{"ts":"2025-09-19T10:03:16Z","service":"billing","level":"INFO","msg":"payment scheduled","orderId":"o-2029","date":"2025-09-20"}
+{"ts":"2025-09-19T10:03:17Z","service":"auth","level":"WARN","msg":"user password weak","userId":"u-119"}
+{"ts":"2025-09-19T10:03:18Z","service":"shipping","level":"ERROR","msg":"shipment duplicated","shipmentId":"sh-3020"}
+{"ts":"2025-09-19T10:03:19Z","service":"api","level":"INFO","msg":"GET /api/v2/ping 200"}
+{"ts":"2025-09-19T10:03:20Z","service":"orders","level":"ERROR","msg":"orderId array","orderId":["o-2030","o-2031"]}
+{"ts":"2025-09-19T10:03:21Z","service":"billing","level":"WARN","msg":"chargeback reversed","orderId":"o-2032"}
+{"ts":"2025-09-19T10:03:22Z","service":"auth","level":"INFO","msg":"user email changed","userId":"u-120"}
+{"ts":"2025-09-19T10:03:23Z","service":"shipping","level":"INFO","msg":"package in customs","shipmentId":"sh-3021"}
+{"ts":"2025-09-19T10:03:24Z","service":"api","level":"ERROR","msg":"bad gateway","code":502}
+{"ts":"2025-09-19T10:03:25Z","service":"orders","level":"INFO","msg":"order split","orderId":"o-2033","parts":3}
+{"ts":"2025-09-19T10:03:26Z","service":"billing","level":"ERROR","msg":"chargeback lost","orderId":"o-2034"}
+{"ts":"2025-09-19T10:03:27Z","service":"auth","level":"INFO","msg":"user MFA reset","userId":"u-121"}
+{"ts":"2025-09-19T10:03:28Z","service":"shipping","level":"WARN","msg":"carrier unavailable","shipmentId":"sh-3022"}
+{"ts":"2025-09-19T10:03:29Z","service":"api","level":"INFO","msg":"GET /api/v2/docs 200"}
+{"ts":"2025-09-19T10:03:30Z","service":"orders","level":"ERROR","msg":"orderId object","orderId":{"id":"o-2035"}}
+{"ts":"2025-09-19T10:03:31Z","service":"billing","level":"INFO","msg":"payment cancelled","orderId":"o-2036"}
+{"ts":"2025-09-19T10:03:32Z","service":"auth","level":"ERROR","msg":"user locked","userId":"u-122"}
+{"ts":"2025-09-19T10:03:33Z","service":"shipping","level":"INFO","msg":"package redirected","shipmentId":"sh-3023"}
+{"ts":"2025-09-19T10:03:34Z","service":"api","level":"WARN","msg":"unexpected EOF"}
+{"ts":"2025-09-19T10:03:35Z","service":"orders","level":"ERROR","msg":"orderId boolean","orderId":true}
+{"ts":"2025-09-19T10:03:36Z","service":"billing","level":"INFO","msg":"payment pending","orderId":"o-2037"}
+{"ts":"2025-09-19T10:03:37Z","service":"auth","level":"WARN","msg":"user not verified","userId":"u-123"}
+{"ts":"2025-09-19T10:03:38Z","service":"shipping","level":"ERROR","msg":"shipment not found","shipmentId":null}
+{"ts":"2025-09-19T10:03:39Z","service":"api","level":"INFO","msg":"GET /api/v2/robots.txt 200"}
+{"ts":"2025-09-19T10:03:40Z","service":"orders","level":"ERROR","msg":"orderId float","orderId":2038.5}
+{"ts":"2025-09-19T10:03:41Z","service":"billing","level":"WARN","msg":"chargeback error","orderId":"o-2039"}
+{"ts":"2025-09-19T10:03:42Z","service":"auth","level":"INFO","msg":"user password expired","userId":"u-124"}
+{"ts":"2025-09-19T10:03:43Z","service":"shipping","level":"INFO","msg":"package delayed","shipmentId":"sh-3024"}
+{"ts":"2025-09-19T10:03:44Z","service":"api","level":"ERROR","msg":"unknown error"}
+{"ts":"2025-09-19T10:03:45Z","service":"orders","level":"INFO","msg":"order completed","orderId":"o-2040"}
+{"ts":"2025-09-19T10:03:46Z","service":"billing","level":"ERROR","msg":"chargeback unknown","orderId":null}
+{"ts":"2025-09-19T10:03:47Z","service":"auth","level":"INFO","msg":"user password reused","userId":"u-125"}
+{"ts":"2025-09-19T10:03:48Z","service":"shipping","level":"WARN","msg":"address PO box","shipmentId":"sh-3025"}
+{"ts":"2025-09-19T10:03:49Z","service":"api","level":"INFO","msg":"GET /api/v2/unknown 404"}
+{"ts":"2025-09-19T10:03:50Z","service":"orders","level":"ERROR","msg":"orderId null string","orderId":"null"}
+{"ts":"2025-09-19T10:03:51Z","service":"billing","level":"INFO","msg":"payment duplicate","orderId":"o-2041"}
+{"ts":"2025-09-19T10:03:52Z","service":"auth","level":"ERROR","msg":"user not found","userId":null}
+{"ts":"2025-09-19T10:03:53Z","service":"shipping","level":"INFO","msg":"package in transit","shipmentId":"sh-3026"}
+{"ts":"2025-09-19T10:03:54Z","service":"api","level":"WARN","msg":"slow response","latency_ms":2000}
+{"ts":"2025-09-19T10:03:55Z","service":"orders","level":"ERROR","msg":"orderId NaN","orderId":"NaN"}
+{"ts":"2025-09-19T10:03:56Z","service":"billing","level":"INFO","msg":"payment error","orderId":"o-2042"}
+{"ts":"2025-09-19T10:03:57Z","service":"auth","level":"WARN","msg":"user not authorized","userId":"u-126"}
+{"ts":"2025-09-19T10:03:58Z","service":"shipping","level":"ERROR","msg":"shipment error","shipmentId":"sh-3027"}
+{"ts":"2025-09-19T10:03:59Z","service":"api","level":"INFO","msg":"GET /api/v2/ 200"}
+{"ts":"2025-09-19T10:04:00Z","service":"orders","level":"ERROR","msg":"orderId undefined","orderId":undefined}
+{"ts":"2025-09-19T10:04:01Z","service":"billing","level":"WARN","msg":"chargeback duplicate","orderId":"o-2043"}
+{"ts":"2025-09-19T10:04:02Z","service":"auth","level":"INFO","msg":"user password reset","userId":"u-127"}
+{"ts":"2025-09-19T10:04:03Z","service":"shipping","level":"INFO","msg":"package delivered","shipmentId":"sh-3028"}
+{"ts":"2025-09-19T10:04:04Z","service":"api","level":"ERROR","msg":"timeout","latency_ms":15000}
+{"ts":"2025-09-19T10:04:05Z","service":"orders","level":"INFO","msg":"order split","orderId":"o-2044","parts":4}
+{"ts":"2025-09-19T10:04:06Z","service":"billing","level":"ERROR","msg":"chargeback error","orderId":"o-2045"}
+{"ts":"2025-09-19T10:04:07Z","service":"auth","level":"INFO","msg":"user password changed","userId":"u-128"}
+{"ts":"2025-09-19T10:04:08Z","service":"shipping","level":"WARN","msg":"address changed","shipmentId":"sh-3029"}
+{"ts":"2025-09-19T10:04:09Z","service":"api","level":"INFO","msg":"GET /api/v2/metrics 200"}
+{"ts":"2025-09-19T10:04:10Z","service":"orders","level":"ERROR","msg":"orderId whitespace","orderId":"   "}
+{"ts":"2025-09-19T10:04:11Z","service":"billing","level":"INFO","msg":"payment confirmed","orderId":"o-2046"}
+{"ts":"2025-09-19T10:04:12Z","service":"auth","level":"ERROR","msg":"user not activated","userId":"u-129"}
+{"ts":"2025-09-19T10:04:13Z","service":"shipping","level":"INFO","msg":"package delivered","shipmentId":"sh-3030"}
+{"ts":"2025-09-19T10:04:14Z","service":"api","level":"WARN","msg":"slow query","query":"SELECT * FROM orders"}
+{"ts":"2025-09-19T10:04:15Z","service":"orders","level":"ERROR","msg":"orderId special chars","orderId":"o-!@#$"}
+{"ts":"2025-09-19T10:04:16Z","service":"billing","level":"INFO","msg":"payment scheduled","orderId":"o-2047","date":"2025-09-21"}
+{"ts":"2025-09-19T10:04:17Z","service":"auth","level":"WARN","msg":"user password weak","userId":"u-130"}
+{"ts":"2025-09-19T10:04:18Z","service":"shipping","level":"ERROR","msg":"shipment duplicated","shipmentId":"sh-3031"}
+{"ts":"2025-09-19T10:04:19Z","service":"api","level":"INFO","msg":"GET /api/v2/ping 200"}
+MALFORMED LINE WITHOUT JSON
+{"ts":"2025-09-19T10:04:20Z","service":"orders","level":"ERROR","msg":"orderId array","orderId":["o-2048","o-2049"]}
+{"ts":"2025-09-19T10:04:21Z","service":"billing","level":"WARN","msg":"chargeback reversed","orderId":"o-2050"}
+{"ts":"2025-09-19T10:04:22Z","service":"auth","level":"INFO","msg":"user email changed","userId":"u-131"}
+{"ts":"2025-09-19T10:04:23Z","service":"shipping","level":"INFO","msg":"package in customs","shipmentId":"sh-3032"}
+{"ts":"2025-09-19T10:04:24Z","service":"api","level":"ERROR","msg":"bad gateway","code":502}
+{"ts":"2025-09-19T10:04:25Z","service":"orders","level":"INFO","msg":"order split","orderId":"o-2051","parts":5}
+{"ts":"2025-09-19T10:04:26Z","service":"billing","level":"ERROR","msg":"chargeback lost","orderId":"o-2052"}
+{"ts":"2025-09-19T10:04:27Z","service":"auth","level":"INFO","msg":"user MFA reset","userId":"u-132"}
+{"ts":"2025-09-19T10:04:28Z","service":"shipping","level":"WARN","msg":"carrier unavailable","shipmentId":"sh-3033"}
+{"ts":"2025-09-19T10:04:29Z","service":"api","level":"INFO","msg":"GET /api/v2/docs 200"}
+{"ts":"2025-09-19T10:04:30Z","service":"orders","level":"ERROR","msg":"orderId object","orderId":{"id":"o-2053"}}
+{"ts":"2025-09-19T10:04:31Z","service":"billing","level":"INFO","msg":"payment cancelled","orderId":"o-2054"}
+{"ts":"2025-09-19T10:04:32Z","service":"auth","level":"ERROR","msg":"user locked","userId":"u-133"}
+{"ts":"2025-09-19T10:04:33Z","service":"shipping","level":"INFO","msg":"package redirected","shipmentId":"sh-3034"}
+{"ts":"2025-09-19T10:04:34Z","service":"api","level":"WARN","msg":"unexpected EOF"}
+{"ts":"2025-09-19T10:04:35Z","service":"orders","level":"ERROR","msg":"orderId boolean","orderId":false}
+{"ts":"2025-09-19T10:04:36Z","service":"billing","level":"INFO","msg":"payment pending","orderId":"o-2055"}
+{"ts":"2025-09-19T10:04:37Z","service":"auth","level":"WARN","msg":"user not verified","userId":"u-134"}
+{"ts":"2025-09-19T10:04:38Z","service":"shipping","level":"ERROR","msg":"shipment not found","shipmentId":null}
+{"ts":"2025-09-19T10:04:39Z","service":"api","level":"INFO","msg":"GET /api/v2/robots.txt 200"}
+{"ts":"2025-09-19T10:04:40Z","service":"orders","level":"ERROR","msg":"orderId float","orderId":2056.5}
+{"ts":"2025-09-19T10:04:41Z","service":"billing","level":"WARN","msg":"chargeback error","orderId":"o-2057"}
+{"ts":"2025-09-19T10:04:42Z","service":"auth","level":"INFO","msg":"user password expired","userId":"u-135"}
+{"ts":"2025-09-19T10:04:43Z","service":"shipping","level":"INFO","msg":"package delayed","shipmentId":"sh-3035"}
+{"ts":"2025-09-19T10:04:44Z","service":"api","level":"ERROR","msg":"unknown error"}
+{"ts":"2025-09-19T10:01:39Z","service":"api","level":"INFO","msg":"GET /health 200","latency_ms":16}
+
+{"ts":"2025-09-19T10:01:40Z","service":"api","level":"INFO","msg":"GET /status 200","latency_ms":47}
+{"ts":"2025-09-19T10:01:41Z","service":"orders","level":"ERROR","msg":"payment declined","orderId":"o-1031","customer":{"id":"c-6","region":"us"}}
+{"ts":"2025-09-19T10:01:42Z","service":"billing","level":"WARN","msg":"slow response from payment gateway","latency_ms":1700}
+{"ts":"2025-09-19T10:01:43Z","service":"auth","level":"INFO","msg":"user login success","userId":"u-21"}
+{"ts":"2025-09-19T10:01:44Z","service":"shipping","level":"ERROR","msg":"label printer offline","shipmentId":"sh-2016"}
+{"ts":"2025-09-19T10:01:45Z","service":"orders","level":"INFO","msg":"new order received","orderId":"o-1032"}
+{"ts":"2025-09-19T10:01:46Z","service":"billing","level":"ERROR","msg":"db connection timeout","retryCount":6}
+{"ts":"2025-09-19T10:01:47Z","service":"api","level":"INFO","msg":"GET /products 200","latency_ms":60}
+{"ts":"2025-09-19T10:01:48Z","service":"auth","level":"ERROR","msg":"invalid password","userId":"u-22","ip":"203.0.113.15"}
+{"ts":"2025-09-19T10:01:49Z","service":"shipping","level":"INFO","msg":"shipment queued","shipmentId":"sh-2017"}
+{"ts":"2025-09-19T10:01:50Z","service":"orders","level":"ERROR","msg":"inventory shortfall","orderId":"o-1033","sku":"sku-104"}
+{"ts":"2025-09-19T10:01:51Z","service":"billing","level":"INFO","msg":"charge succeeded","orderId":"o-1034","amount":699.99}
+{"ts":"2025-09-19T10:01:52Z","service":"shipping","level":"WARN","msg":"carrier API degraded","carrier":"DHL"}
+{"ts":"2025-09-19T10:01:53Z","service":"auth","level":"ERROR","msg":"account locked","userId":"u-23"}
+{"ts":"2025-09-19T10:01:54Z","service":"api","level":"ERROR","msg":"timeout from upstream","endpoint":"/checkout","latency_ms":3500}
+{"ts":"2025-09-19T10:01:55Z","service":"orders","level":"INFO","msg":"order confirmed","orderId":"o-1035"}
+{"ts":"2025-09-19T10:01:56Z","service":"billing","level":"ERROR","msg":"charge failed","orderId":"o-1036","reason":"gateway-down"}
+{"ts":"2025-09-19T10:01:57Z","service":"auth","level":"WARN","msg":"multiple failed logins","userId":"u-24"}
+{"ts":"2025-09-19T10:01:58Z","service":"shipping","level":"INFO","msg":"shipment dispatched","shipmentId":"sh-2018"}
+{"ts":"2025-09-19T10:01:59Z","service":"api","level":"INFO","msg":"GET /health 200","latency_ms":17}

@@ -77,12 +77,23 @@ class LogAnalyzer:
         return latest_file
 
     def get_next_line(self):
-        line = self.stream.readline()
-        return line if line else None
+        while True:
+            line = self.stream.readline()
+            if line == '':  # EOF
+                return None
+            stripped = line.strip()
+            if stripped and not stripped.startswith('#'):
+                return line
 
     def get_next_json_line(self):
-        next_line = self.get_next_line()
-        return json.loads(next_line) if (next_line or "").strip() else None
+        while True:
+            next_line = self.get_next_line()
+            if next_line is None:  # EOF
+                return None
+            try:
+                return json.loads(next_line)
+            except json.JSONDecodeError:
+                continue
 
     def close(self):
         self.stream.close()

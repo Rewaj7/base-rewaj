@@ -154,5 +154,57 @@ class TestLogAnalyzer(unittest.TestCase):
         analyzer.close()
 
 
+    def test_get_next_json_line_skips_malformed(self):
+        analyzer = LogAnalyzer(
+            local="./test/test_cases/2025-09-15T13-00.jsonl",
+            threshold=5
+        )
 
+        first_json = analyzer.get_next_json_line()
+        self.assertEqual(first_json["service"], "orders")
+        self.assertEqual(first_json["msg"], "new order received")
+
+        second_json = analyzer.get_next_json_line()
+        self.assertEqual(second_json["service"], "orders")
+        self.assertEqual(second_json["msg"], "inventory shortfall")
+
+        third_json = analyzer.get_next_json_line()
+        self.assertEqual(third_json["service"], "billing")
+        self.assertEqual(third_json["msg"], "charge succeeded")
+
+        fourth_json = analyzer.get_next_json_line()
+        self.assertEqual(fourth_json["service"], "billing")
+        self.assertEqual(fourth_json["msg"], "rate limit exceeded")
+
+        fifth_json = analyzer.get_next_json_line()
+        self.assertEqual(fifth_json["service"], "shipping")
+        self.assertEqual(fifth_json["msg"], "shipment queued")
+
+        sixth_json = analyzer.get_next_json_line()
+        self.assertEqual(sixth_json["service"], "shipping")
+        self.assertEqual(sixth_json["msg"], "label printer offline")
+
+        self.assertIsNone(analyzer.get_next_json_line())
+        analyzer.close()
+
+
+    def test_generate_report_skips_malformed(self):
+        analyzer = LogAnalyzer(
+            local="./test/test_cases/2025-09-15T13-00.jsonl",
+            threshold=5
+        )
+        report_json = analyzer.generate_report()
+        self.assertEqual(report_json["total"], 3)
+
+        analyzer.close()
+
+    def test_generate_report_skips_malformed_value(self):
+        analyzer = LogAnalyzer(
+            local="./test/test_cases/2025-09-15T16-00.jsonl",
+            threshold=5
+        )
+        report_json = analyzer.generate_report()
+        self.assertEqual(report_json["total"], 112)
+
+        analyzer.close()
 

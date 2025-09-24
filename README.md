@@ -177,7 +177,7 @@ I implemented several stretch goals to extend the functionality and robustness o
   * Pros: Improves maintainability and reusability, enables future features like standardised templates for auto scaling.
   * Cons: Introduces upfront effort in maintaining the module with its variables and boilerplate. Currently due to no additional features, not yet a visible improvement over keeping the Service in a module
 
-* **Using Only Terraform Apply**
+* **Using Only Terraform Apply for ECS Deployments**
 
   * Pros: Infrastructure changes happens in same job as forcing new deployment on ECS service
   * Cons: No error raised in workflow if ECS service fails to start for a reason like missing ECR image. First idea solution would be having a job that only passes once it verifies a new service is in RUNNING status. Also no notification once tasks have been replaced

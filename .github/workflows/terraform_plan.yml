@@ -49,7 +49,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
-      - name: Call Terraform VPC Deploy
+      - name: Call Terraform VPC Plan
         uses: ./.github/actions/terraform_plan
         with:
           env: ${{ matrix.env }}
@@ -57,7 +57,7 @@ jobs:
 
   terraform-plan:
     runs-on: ubuntu-latest
-    needs: [terraform-plan-vpc]
+    needs: [determine-env-outputs, terraform-plan-vpc]
     environment: AWS
     strategy:
       matrix:
@@ -72,7 +72,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
-      - name: Call Terraform Deploy
+      - name: Call Terraform Plan
         uses: ./.github/actions/terraform_plan
         with:
           env: ${{ matrix.env }}

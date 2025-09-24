@@ -167,4 +167,4 @@ I implemented several stretch goals to extend the functionality and robustness o
 * **Using Only Terraform Apply**
 
   * Pros: Infrastructure changes happens in same job as forcing new deployment on ECS service
-  * Cons: No error raised in workflow if ECS service fails to start for a reason like missing ECR image. First idea solution would be having a job that only passes once it verifies a new service is in RUNNING status. 
+  * Cons: No error raised in workflow if ECS service fails to start for a reason like missing ECR image. First idea solution would be having a job that only passes once it verifies a new service is in RUNNING status. Also no notification once tasks have been replaced

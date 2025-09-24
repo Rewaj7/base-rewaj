@@ -127,6 +127,12 @@ docker push $IMAGE_URI
 This approach allows multiple Terraform environments to be deployed per branch while keeping a single, consistent Docker image tag per branch.
 This is also why there are two different Terraform variables, one for environment and one for the ECR tag.
 
+### Try Deploy Yourself
+
+I've left a PR open from the feature branch `base` into `main` where no deployments have yet been run.
+I've already created the prod.tfbackend and prod.tfvars file. By merging the PR, it should create the VPC infra from scratch,
+push an ECR image with latest-prod and deploy the application and infrastructure from scratch, outputting the valid domain.
+
 
 ## 6. Stretch Goals  
 

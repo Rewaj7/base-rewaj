@@ -32,6 +32,8 @@ jobs:
             echo 'ecr-tag="prod"' >> $GITHUB_OUTPUT
           else
             echo 'terraform-env-list=[]' >> $GITHUB_OUTPUT
+            echo 'terraform-vpc-env-list=[]' >> $GITHUB_OUTPUT
+            echo 'ecr-tag="unknown"' >> $GITHUB_OUTPUT
           fi
 
   terraform-deploy-vpc:
@@ -51,7 +53,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
-      - name: Call hello action
+      - name: Call Terraform VPC Deploy
         uses: ./.github/actions/terraform_deploy
         with:
           env: ${{ matrix.env }}
@@ -118,7 +120,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
-      - name: Call hello action
+      - name: Call Terraform Deploy
         uses: ./.github/actions/terraform_deploy
         with:
           env: ${{ matrix.env }}

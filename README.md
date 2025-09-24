@@ -134,7 +134,7 @@ I implemented several stretch goals to extend the functionality and robustness o
 
 - **Time-based log filtering**: Added a `--since` flag to the CLI, which allows filtering logs within a specific time window. The flag uses the `YYYY-MM-DDTHH:MM:SSZ` format, and the timestamp comparison is performed alongside the log level checks to ensure precise filtering.  
 
-- **Notification endpoint**: Introduced a `/notify` endpoint that publishes alerts to an **SNS topic** already managed in Terraform and passed via environment variable. This is implemented using **boto3**, and messages include `file_directory` and `number_of_alerts` as message attributes to provide context for downstream consumers.  
+- **Notification endpoint**: Introduced a `/notify` endpoint that publishes alerts to an **SNS topic** already managed in Terraform and passed via environment variable. This is implemented using **boto3**, and messages include `file_directory` and `number_of_alerts` as message attributes to provide context for downstream consumers. Uses same query params as `/analyze`  
 
 - **Efficient S3 reading**: Optimized S3 log ingestion by streaming file contents via a `TextIOWrapper`, reducing memory usage and making it possible to handle larger log files more efficiently.  
 
@@ -164,3 +164,7 @@ I implemented several stretch goals to extend the functionality and robustness o
   * Pros: Improves maintainability and reusability, enables future features like standardised templates for auto scaling.
   * Cons: Introduces upfront effort in maintaining the module with its variables and boilerplate. Currently due to no additional features, not yet a visible improvement over keeping the Service in a module
 
+* **Using Only Terraform Apply**
+
+  * Pros: Infrastructure changes happens in same job as forcing new deployment on ECS service
+  * Cons: No error raised in workflow if ECS service fails to start for a reason like missing ECR image. First idea solution would be having a job that only passes once it verifies a new service is in RUNNING status. Also no notification once tasks have been replaced

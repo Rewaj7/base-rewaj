@@ -1,0 +1,8 @@
+{"ts":"2025-09-15T15:30:01Z","service":"api","level":"INFO","msg":"GET /products 200","latency_ms":87}
+{"ts":"2025-09-15T15:30:04Z","service":"api","level":"ERROR","msg":"timeout from upstream","endpoint":"/products","latency_ms":3005}
+{"ts":"2025-09-15T15:30:07Z","service":"orders","level":"INFO","msg":"order confirmed","orderId":"o-126"}
+{"ts":"2025-09-15T15:30:09Z","service":"orders","level":"ERROR","msg":"payment gateway unavailable","orderId":"o-126"}
+{"ts":"2025-09-15T15:30:12Z","service":"billing","level":"ERROR","msg":"charge failed","orderId":"o-126","reason":"gateway-down"}
+{"ts":"2025-09-15T15:30:15Z","service":"auth","level":"WARN","msg":"multiple failed logins","userId":"u-77"}
+{"ts":"2025-09-15T15:30:17Z","service":"auth","level":"ERROR","msg":"account locked","userId":"u-77"}
+{"ts":"2025-09-15T15:30:20Z","service":"shipping","level":"INFO","msg":"shipment dispatched","shipmentId":"sh-1003"}

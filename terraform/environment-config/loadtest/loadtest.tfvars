@@ -1,6 +1,6 @@
 //Common
 env = "loadtest"
-ecr_tag = "stagng"
+ecr_tag = "staging"
 aws_region = "eu-west-1"
 
 //VPC

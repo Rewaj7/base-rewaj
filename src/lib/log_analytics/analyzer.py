@@ -16,6 +16,13 @@ class LogAnalyzer:
     DATE_TIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
 
     def __init__(self, threshold, bucket_name=None, prefix=None, time_stamp = None, local = None):
+        """
+        :param threshold: Number of error logs to trigger an alert
+        :param bucket_name: S3 bucket name to find latest log files (Not required if local is provided)
+        :param prefix: S3 Prefix to find latest log file in bucket (Not require if local is provided)
+        :param time_stamp: Timestamp to include only logs recorded after
+        :param local: Local file directory
+        """
         self.threshold = threshold
         self.trigger_alert = False
         self.time_stamp = time_stamp
@@ -35,7 +42,12 @@ class LogAnalyzer:
 
 
     @staticmethod
-    def get_most_recent_json(bucket_name, prefix):
+    def get_most_recent_json(bucket_name, prefix) -> str:
+        """
+        :param bucket_name: S3 bucket name to find latest log files
+        :param prefix: S3 Prefix to find latest log file in bucket
+        :return: The S3 object key of the most last log file
+        """
         latest_file = None
         latest_time = None
 
@@ -60,12 +72,17 @@ class LogAnalyzer:
 
     def get_next_json_line(self):
         next_line = self.get_next_line()
-        return json.loads(next_line) if next_line.strip() else None
+        return json.loads(next_line) if (next_line or "").strip() else None
 
     def close(self):
         self.stream.close()
 
     def is_next_error(self):
+        """
+        :return: A dict with:
+            - "service_name" (str): the name of the service that produced the log line (N/A if no next line)
+            - "is_error" (int): whether the next line corresponds to an error log. -1 If no next line
+        """
         next_line = self.get_next_json_line()
         service = next_line["service"] if next_line else "N/A"
         is_error = -1
@@ -82,6 +99,10 @@ class LogAnalyzer:
         }
 
     def generate_report(self, notify_sns: bool = False):
+        """
+        :param notify_sns: Whether to send SNS message if errors pass threshold
+        :return: JSON report
+        """
         number_of_errors = {}
         total_errors = 0
         is_next_error = self.is_next_error()
@@ -114,7 +135,6 @@ class LogAnalyzer:
             }
         }
 
-        # Publish the message
         response = sns_client.publish(
             TopicArn=SNS_TOPIC_ARN,
             Message=message,

@@ -1,5 +1,5 @@
 import argparse
-import datetime
+from datetime import datetime
 
 from lib.log_analytics.analyzer import LogAnalyzer
 
@@ -16,7 +16,6 @@ def main():
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument(
         "--local",
-        action="store_true",
         help="Use local logs instead of S3 bucket"
     )
     group.add_argument(
@@ -56,7 +55,6 @@ def main():
                                local=args.local,
                                time_stamp=args.since)
     report = log_analyzer.generate_report()
-    print(report)
     return report
 
 

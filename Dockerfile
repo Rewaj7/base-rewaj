@@ -6,6 +6,8 @@ COPY src/ /app/src/
 COPY requirements.txt /app/
 
 ENV PYTHONPATH=/app/src
+ENV AWS_DEFAULT_REGION=eu-west-1
+ENV ENVIRONMENT=dev
 
 RUN pip install -r requirements.txt
 

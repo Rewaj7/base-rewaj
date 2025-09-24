@@ -18,13 +18,13 @@ jobs:
       - name: Determine env outputs
         id: set-outputs
         run: |
-          if [ "${GITHUB_REF_NAME}" == "develop" ]; then
+          if [ "${GITHUB_BASE_REF}" == "develop" ]; then
             echo 'terraform-env-list=["dev"]' >> $GITHUB_OUTPUT
             echo 'terraform-vpc-env-list=["dev"]' >> $GITHUB_OUTPUT
-          elif [ "${GITHUB_REF_NAME}" == "staging" ]; then
+          elif [ "${GITHUB_BASE_REF}" == "staging" ]; then
             echo 'terraform-env-list=["staging","loadtest"]' >> $GITHUB_OUTPUT
             echo 'terraform-vpc-env-list=["staging"]' >> $GITHUB_OUTPUT
-          elif [ "${GITHUB_REF_NAME}" == "main" ]; then
+          elif [ "${GITHUB_BASE_REF}" == "main" ]; then
             echo 'terraform-env-list=["prod"]' >> $GITHUB_OUTPUT
             echo 'terraform-vpc-env-list=["prod"]' >> $GITHUB_OUTPUT
           else

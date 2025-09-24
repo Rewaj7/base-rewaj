@@ -127,6 +127,13 @@ docker push $IMAGE_URI
 This approach allows multiple Terraform environments to be deployed per branch while keeping a single, consistent Docker image tag per branch.
 This is also why there are two different Terraform variables, one for environment and one for the ECR tag.
 
+### Terraform Plan
+
+There is also an additional workflow for PRs which run a Terraform plan for the VPC and application.
+However one weakness of this workflow is that if it's a PR for a brand new environment, the VPC will not have
+been created yet and so the application Terraform Plan will fail since it cannot get the VPC ID from remote backend.
+
+
 ### Try Deploy Yourself
 
 I've left a PR open from the feature branch `base` into `main` where no deployments have yet been run.

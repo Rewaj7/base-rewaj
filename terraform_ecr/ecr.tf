@@ -8,6 +8,11 @@ terraform {
 
 provider "aws" {
   region = "eu-west-1"
+  default_tags {
+    tags = {
+      Configuration = "base-rewaj/terraform_ecr"
+    }
+  }
 }
 
 resource "aws_ecr_repository" "ecr_repo" {

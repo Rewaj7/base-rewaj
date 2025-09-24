@@ -1,5 +1,5 @@
 import argparse
-import datetime
+from datetime import datetime
 
 from lib.log_analytics.analyzer import LogAnalyzer
 
@@ -8,15 +8,19 @@ def parse_iso8601(s):
     try:
         return datetime.strptime(s, "%Y-%m-%dT%H:%M:%SZ")
     except ValueError:
-        error_message = f"Not a valid ISO 8601 timestamp: '{s}'. Expected format YYYY-MM-DDTHH:MM:SSZ"
+        error_message = (f"Not a valid ISO 8601 timestamp: '{s}'. "
+                         f"Expected format YYYY-MM-DDTHH:MM:SSZ")
         raise argparse.ArgumentTypeError(error_message)
 
+
 def main():
-    parser = argparse.ArgumentParser(prog="analyze", description="Analyze CLI tool")
+    parser = argparse.ArgumentParser(
+        prog="analyze",
+        description="Analyze CLI tool")
+
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument(
         "--local",
-        action="store_true",
         help="Use local logs instead of S3 bucket"
     )
     group.add_argument(
@@ -42,13 +46,12 @@ def main():
         "--since",
         type=parse_iso8601,
         required=False,
-        help="Only process logs newer than this ISO 8601 timestamp (e.g., 2025-09-15T12:00:01Z)"
+        help="Only process logs newer than this ISO 8601 timestamp"
     )
 
     args = parser.parse_args()
     if args.bucket and not args.prefix:
         parser.error("--prefix is required when using --bucket")
-
 
     log_analyzer = LogAnalyzer(bucket_name=args.bucket,
                                prefix=args.prefix,
@@ -56,7 +59,6 @@ def main():
                                local=args.local,
                                time_stamp=args.since)
     report = log_analyzer.generate_report()
-    print(report)
     return report
 
 

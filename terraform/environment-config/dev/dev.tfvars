@@ -1,5 +1,6 @@
 //Common
 env = "dev"
+ecr_tag = "dev"
 aws_region = "eu-west-1"
 
 //VPC

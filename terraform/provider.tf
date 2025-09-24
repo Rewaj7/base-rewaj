@@ -9,6 +9,12 @@ terraform {
 }
 provider "aws" {
   region = var.aws_region
+  default_tags {
+    tags = {
+      Environment = var.env
+      Configuration = "base-rewaj/terraform"
+    }
+  }
 }
 
 data "aws_caller_identity" "current" {}

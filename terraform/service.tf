@@ -49,7 +49,7 @@ locals {
   template_input = {
     fastapi_container_name = local.alb_container_name,
     env = var.env,
-    image = "${data.aws_ecr_repository.ecr.repository_url}:latest-${var.env}",
+    image = "${data.aws_ecr_repository.ecr.repository_url}:latest-${var.ecr_tag}",
     fastapi_port = local.open_ports["FASTAPI"]
     aws_region = var.aws_region,
     account_id = data.aws_caller_identity.current.account_id,

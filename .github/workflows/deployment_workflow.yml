@@ -1,9 +1,11 @@
-name: Hello Matrix
+name: Deployment Workflow
 
 on:
   push:
     branches:
       - develop
+      - staging
+      - main
 
 jobs:
   determine-env-outputs:
@@ -21,7 +23,7 @@ jobs:
           elif [ "${GITHUB_REF_NAME}" == "staging" ]; then
             echo 'terraform-env-list=["staging"]' >> $GITHUB_OUTPUT
             echo 'ecr-tag="staging"' >> $GITHUB_OUTPUT
-          elif [ "${GITHUB_REF_NAME}" == "master" ]; then
+          elif [ "${GITHUB_REF_NAME}" == "main" ]; then
             echo 'terraform-env-list=["prod"]' >> $GITHUB_OUTPUT
             echo 'ecr-tag="prod"' >> $GITHUB_OUTPUT
           else

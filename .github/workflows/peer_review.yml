@@ -34,4 +34,5 @@ jobs:
       - name: Run unit tests
         run: |
           export PYTHONPATH=./src:$PYTHONPATH
+          export AWS_DEFAULT_REGION=eu-west-1
           python -m unittest discover -s "test"

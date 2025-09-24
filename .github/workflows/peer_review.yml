@@ -28,7 +28,6 @@ jobs:
 
       - name: Run linting
         run: |
-          # Example: use flake8 as linter
           pip install flake8
           flake8 ./src
 

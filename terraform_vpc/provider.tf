@@ -11,7 +11,7 @@ provider "aws" {
   default_tags {
     tags = {
       Environment   = var.env
-      Configuration = "terraform_vpc"
+      Configuration = "base-rewaj/terraform"
     }
   }
 }

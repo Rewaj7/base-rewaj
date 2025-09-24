@@ -1,0 +1,3 @@
+bucket = "devops-assignment-logs-19-08"
+key = "rewaj-base-tf/rewaj-base-loadtest.tfstate"
+region = "eu-west-1"

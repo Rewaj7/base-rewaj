@@ -6,6 +6,11 @@ variable "env" {
   default = "dev"
 }
 
+variable "ecr_tag" {
+  description = "What latest-{ecr_tag} should be pulled from the ECR as ECS's image"
+  default = "dev"
+}
+
 variable "aws_region" {
   default = "eu-west-1"
 }

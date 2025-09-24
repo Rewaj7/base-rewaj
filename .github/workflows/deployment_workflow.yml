@@ -32,6 +32,8 @@ jobs:
             echo 'ecr-tag="prod"' >> $GITHUB_OUTPUT
           else
             echo 'terraform-env-list=[]' >> $GITHUB_OUTPUT
+            echo 'terraform-vpc-env-list=[]' >> $GITHUB_OUTPUT
+            echo 'ecr-tag="unknown"' >> $GITHUB_OUTPUT
           fi
 
   terraform-deploy-vpc:

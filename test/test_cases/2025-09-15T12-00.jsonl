@@ -1,0 +1,5 @@
+{"ts":"2025-09-15T12:00:01Z","service":"orders","level":"INFO","msg":"new order received","orderId":"o-123"}
+{"ts":"2025-09-15T12:00:03Z","service":"orders","level":"ERROR","msg":"payment declined","orderId":"o-123","customer":{"id":"c-9","region":"eu"}}
+{"ts":"2025-09-15T12:00:05Z","service":"billing","level":"WARN","msg":"slow response from payment gateway","latency_ms":1400}
+{"ts":"2025-09-15T12:00:07Z","service":"billing","level":"ERROR","msg":"db connection timeout","retryCount":2}
+{"ts":"2025-09-15T12:00:09Z","service":"api","level":"INFO","msg":"GET /status 200","latency_ms":42}

@@ -1,0 +1,127 @@
+name: Deployment Workflow
+
+on:
+  push:
+    branches:
+      - develop
+      - staging
+      - main
+
+jobs:
+  determine-env-outputs:
+    runs-on: ubuntu-latest
+    outputs:
+      terraform-env-list: ${{ steps.set-outputs.outputs.terraform-env-list }}
+      ecr-tag: ${{ steps.set-outputs.outputs.ecr-tag }}
+      terraform-vpc-env-list: ${{ steps.set-outputs.outputs.terraform-vpc-env-list }}
+    steps:
+      - name: Determine env outputs
+        id: set-outputs
+        run: |
+          if [ "${GITHUB_REF_NAME}" == "develop" ]; then
+            echo 'terraform-env-list=["dev"]' >> $GITHUB_OUTPUT
+            echo 'terraform-vpc-env-list=["dev"]' >> $GITHUB_OUTPUT
+            echo 'ecr-tag="dev"' >> $GITHUB_OUTPUT
+          elif [ "${GITHUB_REF_NAME}" == "staging" ]; then
+            echo 'terraform-env-list=["staging","loadtest"]' >> $GITHUB_OUTPUT
+            echo 'terraform-vpc-env-list=["staging"]' >> $GITHUB_OUTPUT
+            echo 'ecr-tag="staging"' >> $GITHUB_OUTPUT
+          elif [ "${GITHUB_REF_NAME}" == "main" ]; then
+            echo 'terraform-env-list=["prod"]' >> $GITHUB_OUTPUT
+            echo 'terraform-vpc-env-list=["prod"]' >> $GITHUB_OUTPUT
+            echo 'ecr-tag="prod"' >> $GITHUB_OUTPUT
+          else
+            echo 'terraform-env-list=[]' >> $GITHUB_OUTPUT
+            echo 'terraform-vpc-env-list=[]' >> $GITHUB_OUTPUT
+            echo 'ecr-tag="unknown"' >> $GITHUB_OUTPUT
+          fi
+
+  terraform-deploy-vpc:
+    runs-on: ubuntu-latest
+    needs: determine-env-outputs
+    environment: AWS
+    strategy:
+      matrix:
+        env: ${{ fromJSON(needs.determine-env-outputs.outputs.terraform-vpc-env-list) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+      - name: Call Terraform VPC Deploy
+        uses: ./.github/actions/terraform_deploy
+        with:
+          env: ${{ matrix.env }}
+          directory: "terraform_vpc"
+
+
+  run-tests:
+    runs-on: ubuntu-latest
+    needs: determine-env-outputs
+    environment: AWS
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+      - name: Run Python tests
+        uses: ./.github/actions/run-tests
+
+
+  push-docker:
+    runs-on: ubuntu-latest
+    needs: [run-tests, determine-env-outputs]
+    environment: AWS
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+      - name: Log in to Amazon ECR
+        id: ecr-login
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push Docker image
+        run: |
+          IMAGE_URI=365021530715.dkr.ecr.eu-west-1.amazonaws.com/rewaj_base_ecr:latest-${{ needs.determine-env-outputs.outputs.ecr-tag }}
+          echo "Building image $IMAGE_URI"
+          docker build -t $IMAGE_URI .
+          docker push $IMAGE_URI
+
+  terraform-deploy:
+    runs-on: ubuntu-latest
+    needs: [push-docker, determine-env-outputs, terraform-deploy-vpc]
+    environment: AWS
+    strategy:
+      matrix:
+        env: ${{ fromJSON(needs.determine-env-outputs.outputs.terraform-env-list) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+      - name: Call Terraform Deploy
+        uses: ./.github/actions/terraform_deploy
+        with:
+          env: ${{ matrix.env }}
+          directory: "terraform"

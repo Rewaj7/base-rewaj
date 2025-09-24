@@ -1,0 +1,7 @@
+{"ts":"2025-09-15T13:05:11Z","service":"orders","level":"INFO","msg":"new order received","orderId":"o-124"}
+{"ts":"2025-09-15T13:05:14Z","service":"orders","level":"ERROR","msg":"inventory shortfall","orderId":"o-124","sku":"sku-88"}
+{"ts":"2025-09-15T13:05:16Z","service":"billing","level":"INFO","msg":"charge succeeded","orderId":"o-124","amount":149.99}
+{"ts":"2025-09-15T13:05:18Z","service":"billing","level":"ERROR","msg":"rate limit exceeded","customer":"c-12"}
+{"ts":"2025-09-15T13:05:21Z","service":"shipping","level":"INFO","msg":"shipment queued","shipmentId":"sh-1001"}
+MALFORMED LINE NOT JSON
+{"ts":"2025-09-15T13:05:23Z","service":"shipping","level":"ERROR","msg":"label printer offline","shipmentId":"sh-1002"}

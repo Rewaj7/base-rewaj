@@ -22,8 +22,8 @@ jobs:
             echo 'terraform-env-list=["dev"]' >> $GITHUB_OUTPUT
             echo 'terraform-vpc-env-list=["dev"]' >> $GITHUB_OUTPUT
             echo 'ecr-tag="dev"' >> $GITHUB_OUTPUT
-          elif [ "${GITHUB_REF_NAME}" == "staging","loadtest" ]; then
-            echo 'terraform-env-list=["staging"]' >> $GITHUB_OUTPUT
+          elif [ "${GITHUB_REF_NAME}" == "staging" ]; then
+            echo 'terraform-env-list=["staging","loadtest"]' >> $GITHUB_OUTPUT
             echo 'terraform-vpc-env-list=["staging"]' >> $GITHUB_OUTPUT
             echo 'ecr-tag="staging"' >> $GITHUB_OUTPUT
           elif [ "${GITHUB_REF_NAME}" == "main" ]; then

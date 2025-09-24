@@ -127,6 +127,19 @@ docker push $IMAGE_URI
 This approach allows multiple Terraform environments to be deployed per branch while keeping a single, consistent Docker image tag per branch.
 This is also why there are two different Terraform variables, one for environment and one for the ECR tag.
 
+### Terraform Plan
+
+There is also an additional workflow for PRs which run a Terraform plan for the VPC and application.
+However one weakness of this workflow is that if it's a PR for a brand new environment, the VPC will not have
+been created yet and so the application Terraform Plan will fail since it cannot get the VPC ID from remote backend.
+
+
+### Try Deploy Yourself
+
+I've left a PR open from the feature branch `base` into `main` where no deployments have yet been run.
+I've already created the prod.tfbackend and prod.tfvars file. By merging the PR, it should create the VPC infra from scratch,
+push an ECR image with latest-prod and deploy the application and infrastructure from scratch, outputting the valid domain.
+
 
 ## 6. Stretch Goals  
 
@@ -164,7 +177,7 @@ I implemented several stretch goals to extend the functionality and robustness o
   * Pros: Improves maintainability and reusability, enables future features like standardised templates for auto scaling.
   * Cons: Introduces upfront effort in maintaining the module with its variables and boilerplate. Currently due to no additional features, not yet a visible improvement over keeping the Service in a module
 
-* **Using Only Terraform Apply**
+* **Using Only Terraform Apply for ECS Deployments**
 
   * Pros: Infrastructure changes happens in same job as forcing new deployment on ECS service
   * Cons: No error raised in workflow if ECS service fails to start for a reason like missing ECR image. First idea solution would be having a job that only passes once it verifies a new service is in RUNNING status. Also no notification once tasks have been replaced
